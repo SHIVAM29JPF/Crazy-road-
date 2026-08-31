@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Crazy Road</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #222;
+    font-family: Arial, sans-serif;
+    touch-action: none;
+}
+
+#game {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #555;
+}
+
+
+/* =========================
+   ROAD
+========================= */
+
+#road {
+    position: absolute;
+    left: 8%;
+    width: 84%;
+    height: 100%;
+    background:
+        linear-gradient(
+            90deg,
+            #292929 0%,
+            #3b3b3b 50%,
+            #292929 100%
+        );
+
+    border-left: 6px solid white;
+    border-right: 6px solid white;
+    overflow: hidden;
+}
+
+
+/* =========================
+   ROAD LINES
+========================= */
+
+.roadLine {
+    position: absolute;
+    width: 7
+
+    
+
