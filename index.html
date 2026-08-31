@@ -2,672 +2,954 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>Crazy Road V2.2</title>
+<title>Crazy Road V3.0</title>
 
 <style>
 *{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
 html,body{
-    margin:0;
-    padding:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#75c95b;
-    font-family:Arial,sans-serif;
-    touch-action:none;
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#4eaa48;
+  font-family:Arial,sans-serif;
+  touch-action:none;
 }
 
 #game{
-    position:relative;
-    width:100vw;
-    height:100vh;
-    overflow:hidden;
-    background:#75c95b;
+  position:relative;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  background:#5caf50;
 }
 
-/* ================= ROAD ================= */
+/* ---------- ROAD ---------- */
 
 #road{
-    position:absolute;
-    left:8%;
-    width:84%;
-    height:100%;
-    background:linear-gradient(
-        90deg,
-        #222 0%,
-        #3e3e3e 50%,
-        #222 100%
+  position:absolute;
+  left:8%;
+  width:84%;
+  height:100%;
+  background:
+    linear-gradient(
+      90deg,
+      #242424 0%,
+      #3d3d3d 8%,
+      #303030 50%,
+      #3d3d3d 92%,
+      #242424 100%
     );
-    border-left:6px solid white;
-    border-right:6px solid white;
-    overflow:hidden;
-    z-index:5;
+  border-left:5px solid white;
+  border-right:5px solid white;
+  overflow:hidden;
+  z-index:5;
 }
 
 .roadLine{
-    position:absolute;
-    width:7px;
-    height:85px;
-    left:50%;
-    transform:translateX(-50%);
-    background:white;
-    border-radius:5px;
+  position:absolute;
+  width:7px;
+  height:85px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#fff;
+  border-radius:5px;
 }
 
-/* ================= SCENERY ================= */
+/* ---------- SCENERY ---------- */
 
 #scenery{
-    position:absolute;
-    inset:0;
-    z-index:2;
-    pointer-events:none;
-    overflow:hidden;
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:2;
 }
-
-/* Grass */
 
 .grass{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:
-      repeating-linear-gradient(
-        90deg,
-        rgba(0,100,0,.08) 0px,
-        rgba(0,100,0,.08) 2px,
-        transparent 2px,
-        transparent 22px
-      );
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(0,70,0,.09) 0px,
+      rgba(0,70,0,.09) 2px,
+      transparent 2px,
+      transparent 24px
+    );
 }
 
-/* Tree */
+/* Trees */
 
 .tree{
-    position:absolute;
-    width:75px;
-    height:130px;
+  position:absolute;
+  width:70px;
+  height:115px;
 }
 
-.tree .trunk{
-    position:absolute;
-    width:18px;
-    height:75px;
-    bottom:0;
-    left:29px;
-    background:linear-gradient(
-        90deg,
-        #633c1d,
-        #9a602e,
-        #543217
-    );
-    border-radius:5px;
+.treeLeaves{
+  position:absolute;
+  width:62px;
+  height:62px;
+  left:4px;
+  top:2px;
+  background:#16802a;
+  border-radius:50%;
+  box-shadow:
+    -16px 18px 0 #229d38,
+    17px 20px 0 #126a21,
+    0 31px 0 #1a8c2f;
 }
 
-.tree .leaves{
-    position:absolute;
-    width:70px;
-    height:70px;
-    left:3px;
-    top:5px;
-    background:#167a28;
-    border-radius:50%;
-    box-shadow:
-        -18px 20px 0 #209a32,
-        18px 18px 0 #126a22,
-        0 35px 0 #18832a;
+.treeTrunk{
+  position:absolute;
+  width:16px;
+  height:65px;
+  left:27px;
+  bottom:0;
+  background:linear-gradient(
+    90deg,#4c2c15,#a36a31,#4d2b14
+  );
+  border-radius:5px;
 }
 
-/* Coconut tree */
+/* Palm */
 
 .palm{
-    position:absolute;
-    width:100px;
-    height:170px;
+  position:absolute;
+  width:100px;
+  height:160px;
 }
 
-.palm .palmTrunk{
-    position:absolute;
-    width:13px;
-    height:125px;
-    left:45px;
-    bottom:0;
-    background:linear-gradient(
-        90deg,
-        #65401d,
-        #b87938,
-        #543416
-    );
-    border-radius:50%;
-    transform:rotate(5deg);
+.palmTrunk{
+  position:absolute;
+  width:13px;
+  height:120px;
+  left:44px;
+  bottom:0;
+  background:linear-gradient(
+    90deg,#533015,#ad7434,#543115
+  );
+  border-radius:50%;
 }
 
-.palm .crown{
-    position:absolute;
-    width:18px;
-    height:18px;
-    border-radius:50%;
-    background:#4f3216;
-    left:40px;
-    top:25px;
+.palmCenter{
+  position:absolute;
+  left:38px;
+  top:22px;
+  width:23px;
+  height:23px;
+  background:#583217;
+  border-radius:50%;
+  z-index:2;
 }
 
-.palm .leaf{
-    position:absolute;
-    width:65px;
-    height:11px;
-    background:#157b25;
-    border-radius:100% 0 100% 0;
-    left:48px;
-    top:29px;
-    transform-origin:left center;
+.palmLeaf{
+  position:absolute;
+  left:49px;
+  top:29px;
+  width:67px;
+  height:10px;
+  background:#146e25;
+  border-radius:100% 0 100% 0;
+  transform-origin:left center;
 }
 
-.palm .l1{transform:rotate(-20deg)}
-.palm .l2{transform:rotate(20deg)}
-.palm .l3{transform:rotate(55deg)}
-.palm .l4{transform:rotate(-55deg)}
-.palm .l5{transform:rotate(95deg)}
-.palm .l6{transform:rotate(-95deg)}
+.pl1{transform:rotate(-15deg)}
+.pl2{transform:rotate(18deg)}
+.pl3{transform:rotate(48deg)}
+.pl4{transform:rotate(-48deg)}
+.pl5{transform:rotate(82deg)}
+.pl6{transform:rotate(-82deg)}
 
 .coconut{
-    position:absolute;
-    width:13px;
-    height:13px;
-    background:#6b3d17;
-    border-radius:50%;
-    left:39px;
-    top:38px;
+  position:absolute;
+  left:39px;
+  top:37px;
+  width:12px;
+  height:12px;
+  background:#6b3c18;
+  border-radius:50%;
+  z-index:3;
 }
 
-/* Building */
+/* Buildings */
 
 .building{
-    position:absolute;
-    width:100px;
-    height:145px;
-}
-
-.buildingBody{
-    position:absolute;
-    bottom:0;
-    left:8px;
-    width:84px;
-    height:115px;
-    background:linear-gradient(
-        90deg,
-        #bdbdbd,
-        #e8e8e8,
-        #aaa
-    );
-    border:3px solid #777;
+  position:absolute;
+  width:100px;
+  height:145px;
 }
 
 .roof{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100px;
-    height:38px;
-    background:#8d2c24;
-    clip-path:polygon(
-        50% 0,
-        100% 100%,
-        0 100%
-    );
+  position:absolute;
+  width:100px;
+  height:38px;
+  top:0;
+  background:#8b3027;
+  clip-path:polygon(
+    50% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+.buildingBody{
+  position:absolute;
+  width:84px;
+  height:115px;
+  left:8px;
+  bottom:0;
+  background:linear-gradient(
+    90deg,#999,#eeeeee,#aaa
+  );
+  border:3px solid #666;
 }
 
 .window{
-    position:absolute;
-    width:18px;
-    height:25px;
-    background:#6ed9ff;
-    border:2px solid #444;
+  position:absolute;
+  width:18px;
+  height:25px;
+  background:#69d9ef;
+  border:2px solid #444;
 }
 
 .w1{
-    left:20px;
-    bottom:48px;
+  left:18px;
+  bottom:48px;
 }
 
 .w2{
-    right:20px;
-    bottom:48px;
+  right:18px;
+  bottom:48px;
 }
 
 .door{
-    position:absolute;
-    width:23px;
-    height:43px;
-    left:31px;
-    bottom:0;
-    background:#70452c;
-    border:2px solid #49301f;
+  position:absolute;
+  width:23px;
+  height:43px;
+  left:29px;
+  bottom:0;
+  background:#70462e;
+  border:2px solid #49301f;
 }
 
-/* Small bush */
-
-.bush{
-    position:absolute;
-    width:65px;
-    height:35px;
-    bottom:0;
-}
-
-.bush:before{
-    content:"";
-    position:absolute;
-    width:35px;
-    height:35px;
-    left:4px;
-    bottom:0;
-    background:#126b24;
-    border-radius:50%;
-    box-shadow:
-        22px 4px 0 #17812b,
-        40px 10px 0 #0e5d1e;
-}
-
-
-/* ================= PLAYER ================= */
+/* ---------- TOP-DOWN F1 PLAYER ---------- */
 
 #car{
-    position:absolute;
-    width:64px;
-    height:110px;
-    bottom:55px;
-    transform:translateX(-50%);
-    background:linear-gradient(
-        90deg,
-        #780000,
-        #ff1515,
-        #a00000
+  position:absolute;
+  width:82px;
+  height:125px;
+  bottom:55px;
+  transform:translateX(-50%);
+  z-index:40;
+  filter:drop-shadow(0 7px 6px rgba(0,0,0,.75));
+}
+
+/* Rear wing */
+
+.f1RearWing{
+  position:absolute;
+  left:-5px;
+  bottom:5px;
+  width:92px;
+  height:11px;
+  background:#111;
+  border-radius:4px;
+  border:2px solid #555;
+}
+
+.f1RearSupport1,
+.f1RearSupport2{
+  position:absolute;
+  width:5px;
+  height:13px;
+  background:#111;
+  bottom:10px;
+}
+
+.f1RearSupport1{left:25px}
+.f1RearSupport2{right:25px}
+
+/* Main F1 body */
+
+.f1Body{
+  position:absolute;
+  left:22px;
+  top:13px;
+  width:38px;
+  height:101px;
+  background:
+    linear-gradient(
+      90deg,
+      #700000,
+      #f51a1a 28%,
+      #ff3838 50%,
+      #c50000 72%,
+      #690000
     );
-    border-radius:18px 18px 12px 12px;
-    box-shadow:0 6px 16px rgba(0,0,0,.8);
-    z-index:20;
+  clip-path:polygon(
+    50% 0,
+    70% 15%,
+    82% 42%,
+    100% 55%,
+    79% 66%,
+    72% 91%,
+    63% 100%,
+    37% 100%,
+    28% 91%,
+    21% 66%,
+    0 55%,
+    18% 42%,
+    30% 15%
+  );
+  border:2px solid #ff6d6d;
 }
 
-#car:before{
-    content:"";
-    position:absolute;
-    width:40px;
-    height:30px;
-    left:12px;
-    top:18px;
-    background:linear-gradient(
-        135deg,
-        #050505,
-        #66727c,
-        #050505
+/* Nose */
+
+.f1Nose{
+  position:absolute;
+  left:34px;
+  top:0;
+  width:14px;
+  height:34px;
+  background:#e00000;
+  clip-path:polygon(
+    50% 0,
+    100% 100%,
+    0 100%
+  );
+  z-index:3;
+}
+
+/* Front wing */
+
+.f1FrontWing{
+  position:absolute;
+  left:4px;
+  top:25px;
+  width:74px;
+  height:9px;
+  background:#101010;
+  border-radius:5px;
+  z-index:4;
+}
+
+.f1FrontWing:before,
+.f1FrontWing:after{
+  content:"";
+  position:absolute;
+  width:17px;
+  height:5px;
+  background:#555;
+  top:2px;
+}
+
+.f1FrontWing:before{left:-7px}
+.f1FrontWing:after{right:-7px}
+
+/* Cockpit */
+
+.f1Cockpit{
+  position:absolute;
+  left:27px;
+  top:39px;
+  width:28px;
+  height:37px;
+  background:
+    linear-gradient(
+      135deg,
+      #050505,
+      #647680 48%,
+      #080808
     );
-    border-radius:10px;
+  border:2px solid #111;
+  border-radius:13px 13px 9px 9px;
+  z-index:5;
 }
 
-#car:after{
-    content:"";
-    position:absolute;
-    width:7px;
-    height:95px;
-    left:28px;
-    top:8px;
-    background:white;
-    border-radius:5px;
+.f1Cockpit:after{
+  content:"";
+  position:absolute;
+  width:4px;
+  height:30px;
+  left:10px;
+  top:1px;
+  background:#333;
+  border-radius:3px;
 }
 
-.f1wing{
-    position:absolute;
-    left:-12px;
-    width:88px;
-    height:9px;
-    background:#111;
-    border-radius:5px;
+/* Halo */
+
+.halo{
+  position:absolute;
+  left:25px;
+  top:37px;
+  width:32px;
+  height:41px;
+  border:3px solid #d0d0d0;
+  border-radius:50%;
+  z-index:6;
 }
 
-.frontWing{top:4px}
-.rearWing{bottom:2px}
+/* Side pods */
 
-.playerWheel{
-    position:absolute;
-    width:10px;
-    height:28px;
-    background:#050505;
-    border-radius:5px;
-    z-index:-1;
+.sidePod{
+  position:absolute;
+  width:17px;
+  height:47px;
+  top:57px;
+  background:linear-gradient(
+    90deg,#790000,#e51616,#720000
+  );
+  border-radius:8px;
+  z-index:2;
 }
 
-.pwl{left:-7px;top:27px}
-.pwr{right:-7px;top:27px}
-.pwl2{left:-7px;bottom:20px}
-.pwr2{right:-7px;bottom:20px}
+.sideLeft{left:8px}
+.sideRight{right:8px}
 
+/* Wheels */
 
-/* ================= ENEMIES ================= */
-
-.enemy{
-    position:absolute;
-    width:58px;
-    height:105px;
-    border-radius:17px 17px 11px 11px;
-    box-shadow:0 5px 12px rgba(0,0,0,.75);
-    z-index:15;
+.f1Wheel{
+  position:absolute;
+  width:12px;
+  height:31px;
+  background:#080808;
+  border:2px solid #444;
+  border-radius:5px;
+  z-index:1;
 }
 
-.enemy:before{
-    content:"";
-    position:absolute;
-    width:38px;
-    height:28px;
-    left:10px;
-    top:15px;
-    background:linear-gradient(
-        135deg,
-        #111,
-        #59636b,
-        #111
+.f1wl1{left:2px;top:35px}
+.f1wr1{right:2px;top:35px}
+.f1wl2{left:5px;bottom:19px}
+.f1wr2{right:5px;bottom:19px}
+
+/* Racing stripe */
+
+.f1Stripe{
+  position:absolute;
+  left:39px;
+  top:17px;
+  width:5px;
+  height:91px;
+  background:white;
+  border-radius:3px;
+  z-index:7;
+  opacity:.9;
+}
+
+/* ---------- NORMAL TOP-DOWN TRAFFIC CARS ---------- */
+
+.traffic{
+  position:absolute;
+  width:68px;
+  height:112px;
+  z-index:25;
+  filter:drop-shadow(0 5px 5px rgba(0,0,0,.7));
+}
+
+/* Car body */
+
+.trafficBody{
+  position:absolute;
+  left:7px;
+  top:4px;
+  width:54px;
+  height:104px;
+  border-radius:18px 18px 13px 13px;
+  border:2px solid rgba(255,255,255,.55);
+  box-shadow:
+    inset 5px 0 7px rgba(255,255,255,.18),
+    inset -5px 0 7px rgba(0,0,0,.25);
+}
+
+/* Roof */
+
+.trafficRoof{
+  position:absolute;
+  left:15px;
+  top:24px;
+  width:38px;
+  height:52px;
+  background:
+    linear-gradient(
+      90deg,
+      #111,
+      #596b73 48%,
+      #111
     );
-    border-radius:9px;
+  border-radius:12px;
+  border:2px solid #171717;
+  z-index:4;
 }
 
-.enemy:after{
-    content:"";
-    position:absolute;
-    width:6px;
-    height:90px;
-    left:26px;
-    top:8px;
-    background:rgba(255,255,255,.5);
-    border-radius:4px;
-}
+/* Front windshield */
 
-.green{
-    background:linear-gradient(
-        90deg,#087000,#20d51d,#087000
+.windshieldFront{
+  position:absolute;
+  left:19px;
+  top:27px;
+  width:30px;
+  height:17px;
+  background:
+    linear-gradient(
+      135deg,
+      #111,
+      #9ac4ce,
+      #111
     );
+  border-radius:8px 8px 3px 3px;
+  z-index:5;
 }
 
-.yellow{
-    background:linear-gradient(
-        90deg,#b07b00,#ffd21c,#b07b00
+/* Rear windshield */
+
+.windshieldRear{
+  position:absolute;
+  left:19px;
+  top:56px;
+  width:30px;
+  height:15px;
+  background:
+    linear-gradient(
+      135deg,
+      #111,
+      #738d95,
+      #111
     );
+  border-radius:3px 3px 8px 8px;
+  z-index:5;
 }
 
-.blue{
-    background:linear-gradient(
-        90deg,#003d9e,#087cff,#003d9e
-    );
+/* Wheels */
+
+.trafficWheel{
+  position:absolute;
+  width:11px;
+  height:27px;
+  background:#090909;
+  border:2px solid #4e4e4e;
+  border-radius:5px;
+  z-index:2;
 }
 
-.white{
-    background:linear-gradient(
-        90deg,#999,#fff,#aaa
-    );
+.tw1{left:0;top:27px}
+.tw2{right:0;top:27px}
+.tw3{left:0;bottom:23px}
+.tw4{right:0;bottom:23px}
+
+/* Lights */
+
+.headLight{
+  position:absolute;
+  width:9px;
+  height:6px;
+  background:#fffbd0;
+  border-radius:3px;
+  top:9px;
+  z-index:6;
+  box-shadow:0 0 5px #fff;
 }
 
-.purple{
-    background:linear-gradient(
-        90deg,#55008f,#b62cff,#55008f
-    );
+.hl1{left:16px}
+.hl2{right:16px}
+
+.tailLight{
+  position:absolute;
+  width:8px;
+  height:5px;
+  background:#ff1515;
+  border-radius:3px;
+  bottom:8px;
+  z-index:6;
 }
 
+.tl1{left:15px}
+.tl2{right:15px}
 
-/* ================= COIN ================= */
+/* Different car colors */
+
+.carGreen{
+  background:linear-gradient(
+    90deg,#075b12,#20bd35,#075b12
+  );
+}
+
+.carYellow{
+  background:linear-gradient(
+    90deg,#9c7200,#ffd51a,#9c7200
+  );
+}
+
+.carBlue{
+  background:linear-gradient(
+    90deg,#00357f,#167cff,#00357f
+  );
+}
+
+.carWhite{
+  background:linear-gradient(
+    90deg,#777,#f8f8f8,#999
+  );
+}
+
+.carPurple{
+  background:linear-gradient(
+    90deg,#4b0879,#b735e8,#4b0879
+  );
+}
+
+/* ---------- COINS ---------- */
 
 .coin{
-    position:absolute;
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    background:radial-gradient(
-        circle,
-        #fff36a,
-        #ffd000 40%,
-        #ef9800 75%,
-        #9b5500
+  position:absolute;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      #fff46b 0%,
+      #ffd000 42%,
+      #ee9700 78%,
+      #9b5500 100%
     );
-    border:3px solid #ffe45c;
-    box-shadow:
-        0 0 12px #ffd000,
-        0 0 25px rgba(255,208,0,.5);
-    z-index:13;
-    animation:spin .55s linear infinite;
+  border:3px solid #ffe55a;
+  box-shadow:
+    0 0 12px #ffd000;
+  z-index:20;
+  animation:coinSpin .6s linear infinite;
 }
 
 .coin:after{
-    content:"★";
-    position:absolute;
-    color:white;
-    font-size:18px;
-    left:6px;
-    top:3px;
+  content:"★";
+  position:absolute;
+  color:white;
+  font-size:18px;
+  left:6px;
+  top:3px;
 }
 
-@keyframes spin{
-    from{transform:rotateY(0)}
-    to{transform:rotateY(360deg)}
+@keyframes coinSpin{
+  from{transform:rotateY(0deg)}
+  to{transform:rotateY(360deg)}
 }
 
-
-/* ================= OBSTACLES ================= */
+/* ---------- RARE BARRIERS ---------- */
 
 .obstacle{
-    position:absolute;
-    width:55px;
-    height:38px;
-    background:repeating-linear-gradient(
-        135deg,
-        #ff7b00,
-        #ff7b00 9px,
-        #222 9px,
-        #222 18px
+  position:absolute;
+  width:58px;
+  height:38px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #ff7200 0px,
+      #ff7200 9px,
+      #222 9px,
+      #222 18px
     );
-    border:3px solid white;
-    border-radius:7px;
-    z-index:14;
+  border:3px solid white;
+  border-radius:7px;
+  z-index:19;
 }
 
 .cone{
-    position:absolute;
-    width:28px;
-    height:42px;
-    background:linear-gradient(
-        90deg,
-        #b83c00,
-        #ff6500,
-        #b83c00
-    );
-    clip-path:polygon(
-        50% 0,
-        100% 100%,
-        0 100%
-    );
-    z-index:14;
+  position:absolute;
+  width:28px;
+  height:42px;
+  background:linear-gradient(
+    90deg,#b53a00,#ff6b00,#b53a00
+  );
+  clip-path:polygon(
+    50% 0,
+    100% 100%,
+    0 100%
+  );
+  z-index:19;
 }
 
-
-/* ================= HUD ================= */
+/* ---------- HUD ---------- */
 
 #hud{
-    position:absolute;
-    top:12px;
-    left:12px;
-    z-index:50;
-    color:white;
-    background:rgba(0,0,0,.65);
-    padding:9px 13px;
-    border-radius:13px;
-    font-size:17px;
-    line-height:1.5;
-    font-weight:bold;
-    text-shadow:2px 2px 3px black;
+  position:absolute;
+  top:12px;
+  left:12px;
+  z-index:70;
+  color:white;
+  background:rgba(0,0,0,.68);
+  padding:8px 12px;
+  border-radius:13px;
+  font-size:15px;
+  line-height:1.5;
+  font-weight:bold;
+  text-shadow:2px 2px 3px #000;
 }
 
 #speedText{
-    color:#ffe000;
+  color:#ffe000;
 }
 
+#livesText{
+  color:#ff4a4a;
+}
 
-/* ================= BUTTONS ================= */
+/* ---------- NITRO ---------- */
+
+#nitro{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:15px;
+  z-index:70;
+  width:190px;
+  height:42px;
+  border:2px solid white;
+  border-radius:20px;
+  background:rgba(0,0,0,.72);
+  overflow:hidden;
+}
+
+#nitroBar{
+  height:100%;
+  width:100%;
+  background:linear-gradient(
+    90deg,#ff6500,#ffe000
+  );
+}
+
+#nitroText{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:bold;
+  text-shadow:2px 2px 3px #000;
+}
+
+/* ---------- NITRO FLAME ---------- */
+
+.nitroFlame{
+  position:absolute;
+  width:14px;
+  height:33px;
+  left:34px;
+  bottom:-29px;
+  background:
+    linear-gradient(
+      #fff,
+      #ffe000 35%,
+      #ff4500 75%,
+      transparent
+    );
+  border-radius:50%;
+  z-index:-1;
+  animation:flame .1s infinite alternate;
+}
+
+@keyframes flame{
+  from{transform:scaleY(.7)}
+  to{transform:scaleY(1.25)}
+}
+
+/* ---------- PAUSE ---------- */
 
 #pause{
-    position:absolute;
-    top:15px;
-    right:15px;
-    z-index:70;
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    border:2px solid white;
-    background:rgba(0,0,0,.7);
-    color:white;
-    font-size:22px;
-    display:none;
+  position:absolute;
+  right:14px;
+  top:14px;
+  z-index:80;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:2px solid white;
+  background:rgba(0,0,0,.7);
+  color:white;
+  font-size:22px;
+  display:none;
 }
 
-
-/* ================= MENU ================= */
+/* ---------- MENU ---------- */
 
 #menu{
-    position:absolute;
-    inset:0;
-    z-index:100;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:rgba(0,0,0,.62);
+  position:absolute;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:rgba(0,0,0,.68);
 }
 
 .panel{
-    width:86%;
-    max-width:360px;
-    padding:30px 22px;
-    border-radius:25px;
-    background:rgba(10,10,10,.92);
-    color:white;
-    box-shadow:0 10px 40px rgba(0,0,0,.8);
+  width:86%;
+  max-width:370px;
+  padding:28px 20px;
+  border-radius:25px;
+  background:rgba(10,10,10,.95);
+  color:white;
+  box-shadow:0 10px 40px rgba(0,0,0,.8);
 }
 
 .title{
-    font-size:40px;
-    font-weight:900;
-    color:#ff2020;
-    text-shadow:3px 3px 0 #600;
-    margin-bottom:8px;
+  font-size:38px;
+  font-weight:900;
+  color:#ff2020;
+  text-shadow:3px 3px 0 #600;
 }
 
 .subtitle{
-    color:#ddd;
-    margin-bottom:20px;
+  color:#ddd;
+  margin:7px 0 20px;
 }
 
 .stat{
-    font-size:20px;
-    margin:8px;
+  font-size:20px;
+  margin:8px;
 }
 
 .mainButton{
-    width:90%;
-    padding:15px;
-    margin-top:18px;
-    border-radius:14px;
-    background:#e81717;
-    color:white;
-    font-size:22px;
-    box-shadow:0 5px 0 #850000;
+  width:90%;
+  padding:15px;
+  margin-top:18px;
+  border:0;
+  border-radius:14px;
+  background:#e81717;
+  color:white;
+  font-size:22px;
+  font-weight:bold;
+  box-shadow:0 5px 0 #850000;
 }
 
-.soundButton{
-    margin-top:15px;
-    padding:11px 18px;
-    border-radius:12px;
-    background:#333;
-    color:white;
-    font-size:16px;
+.soundButton,
+.smallButton{
+  margin-top:15px;
+  padding:11px 18px;
+  border:0;
+  border-radius:12px;
+  background:#333;
+  color:white;
+  font-size:16px;
 }
 
+/* ---------- COUNTDOWN ---------- */
 
-/* ================= PAUSE ================= */
+#countdown{
+  position:absolute;
+  inset:0;
+  z-index:90;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:90px;
+  font-weight:900;
+  text-shadow:
+    5px 5px 0 #000,
+    0 0 30px #ff2222;
+}
+
+/* ---------- PAUSE MENU ---------- */
 
 #pauseMenu{
-    position:absolute;
-    inset:0;
-    z-index:90;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,.65);
-    color:white;
-    text-align:center;
+  position:absolute;
+  inset:0;
+  z-index:95;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.68);
+  color:white;
+  text-align:center;
 }
 
 .pauseBox{
-    background:rgba(0,0,0,.92);
-    padding:30px;
-    border-radius:22px;
+  background:rgba(0,0,0,.94);
+  padding:30px;
+  border-radius:22px;
 }
 
 .smallButton{
-    padding:13px 25px;
-    margin:7px;
-    border-radius:12px;
-    background:#444;
-    color:white;
-    font-size:18px;
+  padding:13px 25px;
+  margin:7px;
+  font-size:18px;
 }
 
-
-/* ================= EFFECTS ================= */
+/* ---------- EFFECTS ---------- */
 
 .crash{
-    position:absolute;
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    border:6px solid #ffb000;
-    box-shadow:
-        0 0 20px #ff6500,
-        0 0 40px #f00;
-    animation:crashAnimation .5s ease-out forwards;
-    z-index:95;
+  position:absolute;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  border:6px solid #ffb000;
+  box-shadow:
+    0 0 20px #ff6500,
+    0 0 40px red;
+  animation:crashAnimation .5s ease-out forwards;
+  z-index:99;
 }
 
 @keyframes crashAnimation{
-    from{
-        transform:scale(.2);
-        opacity:1;
-    }
-
-    to{
-        transform:scale(2);
-        opacity:0;
-    }
+  from{
+    transform:scale(.2);
+    opacity:1;
+  }
+  to{
+    transform:scale(2);
+    opacity:0;
+  }
 }
 
 .coinPop{
-    position:absolute;
-    color:#ffe000;
-    font-size:22px;
-    font-weight:bold;
-    z-index:95;
-    animation:coinAnimation .7s ease-out forwards;
+  position:absolute;
+  color:#ffe000;
+  font-size:22px;
+  font-weight:bold;
+  z-index:99;
+  animation:coinAnimation .7s ease-out forwards;
 }
 
 @keyframes coinAnimation{
-    from{
-        transform:translateY(0) scale(.5);
-        opacity:1;
-    }
-
-    to{
-        transform:translateY(-60px) scale(1.4);
-        opacity:0;
-    }
+  from{
+    transform:translateY(0) scale(.5);
+    opacity:1;
+  }
+  to{
+    transform:translateY(-60px) scale(1.4);
+    opacity:0;
+  }
 }
 
+@media(max-width:420px){
+
+  #car{
+    width:76px;
+    height:118px;
+  }
+
+  #hud{
+    font-size:14px;
+  }
+
+  #nitro{
+    width:165px;
+  }
+
+  .title{
+    font-size:34px;
+  }
+}
 </style>
 </head>
 
@@ -675,160 +957,162 @@ html,body{
 
 <div id="game">
 
-    <!-- SIDE SCENERY -->
+  <!-- SCENERY -->
 
-    <div id="scenery">
-        <div class="grass"></div>
+  <div id="scenery">
 
-        <div class="tree" id="tree1">
-            <div class="leaves"></div>
-            <div class="trunk"></div>
-        </div>
+    <div class="grass"></div>
 
-        <div class="tree" id="tree2">
-            <div class="leaves"></div>
-            <div class="trunk"></div>
-        </div>
+    <div class="tree" style="left:1%;top:13%">
+      <div class="treeLeaves"></div>
+      <div class="treeTrunk"></div>
+    </div>
 
-        <div class="palm" id="palm1">
-            <div class="palmTrunk"></div>
-            <div class="crown"></div>
+    <div class="tree" style="right:1%;top:42%">
+      <div class="treeLeaves"></div>
+      <div class="treeTrunk"></div>
+    </div>
 
-            <div class="leaf l1"></div>
-            <div class="leaf l2"></div>
-            <div class="leaf l3"></div>
-            <div class="leaf l4"></div>
-            <div class="leaf l5"></div>
-            <div class="leaf l6"></div>
+    <div class="palm" style="left:-2%;top:65%">
+      <div class="palmTrunk"></div>
+      <div class="palmCenter"></div>
+      <div class="palmLeaf pl1"></div>
+      <div class="palmLeaf pl2"></div>
+      <div class="palmLeaf pl3"></div>
+      <div class="palmLeaf pl4"></div>
+      <div class="palmLeaf pl5"></div>
+      <div class="palmLeaf pl6"></div>
+      <div class="coconut"></div>
+    </div>
 
-            <div class="coconut"></div>
-        </div>
+    <div class="building" style="right:0%;top:8%">
+      <div class="roof"></div>
+      <div class="buildingBody">
+        <div class="window w1"></div>
+        <div class="window w2"></div>
+        <div class="door"></div>
+      </div>
+    </div>
 
-        <div class="building" id="building1">
-            <div class="roof"></div>
+  </div>
 
-            <div class="buildingBody">
+  <!-- ROAD -->
 
-                <div class="window w1"></div>
-                <div class="window w2"></div>
+  <div id="road"></div>
 
-                <div class="door"></div>
+  <!-- HUD -->
 
-            </div>
-        </div>
+  <div id="hud">
+    🏆 Score: <span id="score">0</span><br>
+    🥇 Best: <span id="best">0</span><br>
+    🪙 Coins: <span id="coins">0</span><br>
+    ❤️ Lives: <span id="livesText">3</span><br>
+    ⚡ <span id="speedText">100</span> km/h
+  </div>
 
-        <div class="bush" id="bush1"></div>
-        <div class="bush" id="bush2"></div>
+  <!-- NITRO -->
+
+  <div id="nitro">
+    <div id="nitroBar"></div>
+    <div id="nitroText">🔥 NITRO — SWIPE UP</div>
+  </div>
+
+  <!-- PAUSE -->
+
+  <button id="pause">Ⅱ</button>
+
+  <!-- COUNTDOWN -->
+
+  <div id="countdown"></div>
+
+  <!-- PLAYER F1 -->
+
+  <div id="car">
+
+    <div class="f1RearWing"></div>
+    <div class="f1RearSupport1"></div>
+    <div class="f1RearSupport2"></div>
+
+    <div class="f1Wheel f1wl1"></div>
+    <div class="f1Wheel f1wr1"></div>
+    <div class="f1Wheel f1wl2"></div>
+    <div class="f1Wheel f1wr2"></div>
+
+    <div class="sidePod sideLeft"></div>
+    <div class="sidePod sideRight"></div>
+
+    <div class="f1Body"></div>
+
+    <div class="f1Nose"></div>
+
+    <div class="f1FrontWing"></div>
+
+    <div class="f1Cockpit"></div>
+    <div class="halo"></div>
+
+    <div class="f1Stripe"></div>
+
+  </div>
+
+  <!-- MAIN MENU -->
+
+  <div id="menu">
+
+    <div class="panel">
+
+      <div class="title" id="menuTitle">
+        CRAZY ROAD
+      </div>
+
+      <div class="subtitle" id="menuSubtitle">
+        V3.0 — TOP-DOWN F1 RACER
+      </div>
+
+      <div class="stat">
+        🥇 Best:
+        <span id="menuBest">0</span>
+      </div>
+
+      <div class="stat">
+        🪙 Coins:
+        <span id="menuCoins">0</span>
+      </div>
+
+      <button class="mainButton" id="playButton">
+        ▶ PLAY
+      </button>
+
+      <br>
+
+      <button class="soundButton" id="soundButton">
+        🔊 SOUND ON
+      </button>
 
     </div>
 
+  </div>
 
-    <!-- ROAD -->
+  <!-- PAUSE MENU -->
 
-    <div id="road"></div>
+  <div id="pauseMenu">
 
+    <div class="pauseBox">
 
-    <!-- HUD -->
+      <h1>⏸️ PAUSED</h1>
 
-    <div id="hud">
-        🏆 Score: <span id="score">0</span><br>
-        🥇 Best: <span id="best">0</span><br>
-        🪙 Coins: <span id="coins">0</span><br>
-        ⚡ Speed:
-        <span id="speedText">100</span> km/h
-    </div>
+      <button class="smallButton" id="resumeButton">
+        ▶ Resume
+      </button>
 
-
-    <!-- PAUSE -->
-
-    <button id="pause">Ⅱ</button>
-
-
-    <!-- MENU -->
-
-    <div id="menu">
-
-        <div class="panel">
-
-            <div class="title" id="menuTitle">
-                CRAZY ROAD
-            </div>
-
-            <div class="subtitle" id="menuSubtitle">
-                2D HIGHWAY RACER
-            </div>
-
-            <div class="stat">
-                🥇 Best:
-                <span id="menuBest">0</span>
-            </div>
-
-            <div class="stat">
-                🪙 Coins:
-                <span id="menuCoins">0</span>
-            </div>
-
-            <button
-                class="mainButton"
-                id="playButton">
-                ▶ PLAY
-            </button>
-
-            <br>
-
-            <button
-                class="soundButton"
-                id="soundButton">
-                🔊 SOUND ON
-            </button>
-
-        </div>
+      <button class="smallButton" id="quitButton">
+        🏠 Menu
+      </button>
 
     </div>
 
-
-    <!-- PAUSE MENU -->
-
-    <div id="pauseMenu">
-
-        <div class="pauseBox">
-
-            <h1>⏸️ PAUSED</h1>
-
-            <button
-                class="smallButton"
-                id="resumeButton">
-                ▶ Resume
-            </button>
-
-            <button
-                class="smallButton"
-                id="quitButton">
-                🏠 Menu
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- PLAYER CAR -->
-
-    <div id="car">
-
-        <div class="f1wing frontWing"></div>
-        <div class="f1wing rearWing"></div>
-
-        <div class="playerWheel pwl"></div>
-        <div class="playerWheel pwr"></div>
-
-        <div class="playerWheel pwl2"></div>
-        <div class="playerWheel pwr2"></div>
-
-    </div>
+  </div>
 
 </div>
-
 
 <script>
 
@@ -837,81 +1121,67 @@ html,body{
 ========================================== */
 
 const game =
-    document.getElementById("game");
+  document.getElementById("game");
 
 const road =
-    document.getElementById("road");
+  document.getElementById("road");
 
 const player =
-    document.getElementById("car");
+  document.getElementById("car");
 
 const menu =
-    document.getElementById("menu");
-
-const pauseMenu =
-    document.getElementById("pauseMenu");
+  document.getElementById("menu");
 
 const pauseButton =
-    document.getElementById("pause");
+  document.getElementById("pause");
+
+const pauseMenu =
+  document.getElementById("pauseMenu");
+
+const countdown =
+  document.getElementById("countdown");
 
 const playButton =
-    document.getElementById("playButton");
+  document.getElementById("playButton");
 
 const resumeButton =
-    document.getElementById("resumeButton");
+  document.getElementById("resumeButton");
 
 const quitButton =
-    document.getElementById("quitButton");
+  document.getElementById("quitButton");
 
 const soundButton =
-    document.getElementById("soundButton");
+  document.getElementById("soundButton");
 
 const scoreText =
-    document.getElementById("score");
+  document.getElementById("score");
 
 const bestText =
-    document.getElementById("best");
+  document.getElementById("best");
 
 const coinsText =
-    document.getElementById("coins");
+  document.getElementById("coins");
+
+const livesText =
+  document.getElementById("livesText");
 
 const speedText =
-    document.getElementById("speedText");
+  document.getElementById("speedText");
+
+const nitroBar =
+  document.getElementById("nitroBar");
 
 const menuBest =
-    document.getElementById("menuBest");
+  document.getElementById("menuBest");
 
 const menuCoins =
-    document.getElementById("menuCoins");
+  document.getElementById("menuCoins");
 
 const menuTitle =
-    document.getElementById("menuTitle");
+  document.getElementById("menuTitle");
 
 const menuSubtitle =
-    document.getElementById("menuSubtitle");
-
-
-/* ==========================================
-   SCENERY ELEMENTS
-========================================== */
-
-const tree1 =
-    document.getElementById("tree1");
-
-const tree2 =
-    document.getElementById("tree2");
-
-const palm1 =
-    document.getElementById("palm1");
-
-const building1 =
-    document.getElementById("building1");
-
-const bush1 =
-    document.getElementById("bush1");
-
-const bush2 =
-    document.getElementById("bush2");
+  document.getElementById("menuSubtitle");
 
 
 /* ==========================================
@@ -923,18 +1193,16 @@ let playerX = 0;
 let score = 0;
 
 let best =
-    Number(
-        localStorage.getItem(
-            "crazyRoadBest"
-        )
-    ) || 0;
+  Number(localStorage.getItem(
+    "crazyRoadBest"
+  )) || 0;
 
 let totalCoins =
-    Number(
-        localStorage.getItem(
-            "crazyRoadCoins"
-        )
-    ) || 0;
+  Number(localStorage.getItem(
+    "crazyRoadCoins"
+  )) || 0;
+
+let lives = 3;
 
 let gameSpeed = 5;
 
@@ -947,6 +1215,10 @@ let paused = false;
 let crashed = false;
 
 let soundOn = true;
+
+let nitro = 100;
+
+let nitroActive = false;
 
 let enemies = [];
 
@@ -968,68 +1240,21 @@ let lastScenery = 0;
 
 let lastTime = 0;
 
+let touchStartY = 0;
+
 let lastTouchX = 0;
 
 let audioContext = null;
 
 
 /* ==========================================
-   DISPLAY
+   INITIAL
 ========================================== */
 
 bestText.innerText = best;
-
 coinsText.innerText = totalCoins;
-
 menuBest.innerText = best;
-
 menuCoins.innerText = totalCoins;
-
-
-/* ==========================================
-   INITIAL SCENERY
-========================================== */
-
-function positionInitialScenery(){
-
-    tree1.style.left =
-        "1%";
-
-    tree1.style.top =
-        "12%";
-
-    tree2.style.right =
-        "1%";
-
-    tree2.style.top =
-        "43%";
-
-    palm1.style.left =
-        "0%";
-
-    palm1.style.top =
-        "65%";
-
-    building1.style.right =
-        "0%";
-
-    building1.style.top =
-        "8%";
-
-    bush1.style.left =
-        "1%";
-
-    bush1.style.bottom =
-        "7%";
-
-    bush2.style.right =
-        "1%";
-
-    bush2.style.bottom =
-        "25%";
-}
-
-positionInitialScenery();
 
 
 /* ==========================================
@@ -1038,76 +1263,67 @@ positionInitialScenery();
 
 function startAudio(){
 
-    if(!soundOn)
-        return;
+  if(!soundOn) return;
 
-    if(audioContext)
-        return;
+  if(audioContext) return;
 
-    try{
+  try{
 
-        audioContext =
-            new(
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
+    audioContext =
+      new(
+        window.AudioContext ||
+        window.webkitAudioContext
+      )();
 
-    }catch(error){
-
-        console.log(
-            "Audio unavailable"
-        );
-    }
+  }catch(e){}
 }
 
 
 function beep(
-    frequency,
-    duration,
-    type="sine"
+  frequency,
+  duration,
+  type="sine"
 ){
 
-    if(
-        !soundOn ||
-        !audioContext
-    )
-        return;
+  if(
+    !soundOn ||
+    !audioContext
+  ) return;
 
-    const oscillator =
-        audioContext.createOscillator();
+  const oscillator =
+    audioContext.createOscillator();
 
-    const gain =
-        audioContext.createGain();
+  const gain =
+    audioContext.createGain();
 
-    oscillator.type =
-        type;
+  oscillator.type = type;
 
-    oscillator.frequency.value =
-        frequency;
+  oscillator.frequency.value =
+    frequency;
 
-    gain.gain.setValueAtTime(
-        .08,
-        audioContext.currentTime
-    );
+  gain.gain.setValueAtTime(
+    .08,
+    audioContext.currentTime
+  );
 
-    gain.gain.exponentialRampToValueAtTime(
-        .001,
-        audioContext.currentTime +
-        duration
-    );
+  gain.gain.exponentialRampToValueAtTime(
+    .001,
+    audioContext.currentTime +
+    duration
+  );
 
-    oscillator.connect(gain);
+  oscillator.connect(gain);
 
-    gain.connect(
-        audioContext.destination
-    );
+  gain.connect(
+    audioContext.destination
+  );
 
-    oscillator.start();
+  oscillator.start();
 
-    oscillator.stop(
-        audioContext.currentTime +
-        duration
-    );
+  oscillator.stop(
+    audioContext.currentTime +
+    duration
+  );
 }
 
 
@@ -1117,140 +1333,132 @@ function beep(
 
 function setPlayerStart(){
 
-    playerX =
-        road.offsetLeft +
-        road.clientWidth / 2;
+  playerX =
+    road.offsetLeft +
+    road.clientWidth / 2;
 
-    player.style.left =
-        playerX + "px";
+  player.style.left =
+    playerX + "px";
 }
 
 
 function movePlayer(x){
 
-    const left =
-        road.offsetLeft;
+  const left =
+    road.offsetLeft;
 
-    const right =
-        road.offsetLeft +
-        road.clientWidth;
+  const right =
+    road.offsetLeft +
+    road.clientWidth;
 
-    const half =
-        player.offsetWidth / 2;
+  const half =
+    player.offsetWidth / 2;
 
-    playerX = x;
+  playerX = x;
 
-    if(
-        playerX <
-        left + half
-    ){
+  if(
+    playerX <
+    left + half
+  ){
+    playerX =
+      left + half;
+  }
 
-        playerX =
-            left + half;
-    }
+  if(
+    playerX >
+    right - half
+  ){
+    playerX =
+      right - half;
+  }
 
-    if(
-        playerX >
-        right - half
-    ){
-
-        playerX =
-            right - half;
-    }
-
-    player.style.left =
-        playerX + "px";
+  player.style.left =
+    playerX + "px";
 }
 
 
 /* ==========================================
-   TOUCH CONTROL
+   FREE SWIPE
 ========================================== */
 
 game.addEventListener(
-    "touchstart",
-    function(event){
+  "touchstart",
+  function(e){
 
-        if(
-            event.target.closest(
-                "#menu"
-            ) ||
-            event.target.closest(
-                "#pauseMenu"
-            ) ||
-            event.target.closest(
-                "#pause"
-            )
-        ){
+    if(
+      e.target.closest("#menu") ||
+      e.target.closest("#pauseMenu") ||
+      e.target.closest("#pause")
+    ){
+      return;
+    }
 
-            return;
-        }
+    if(
+      !running ||
+      paused ||
+      crashed
+    ){
+      return;
+    }
 
-        event.preventDefault();
+    e.preventDefault();
 
-        if(
-            !running ||
-            paused ||
-            crashed
-        ){
+    startAudio();
 
-            return;
-        }
+    lastTouchX =
+      e.touches[0].clientX;
 
-        startAudio();
+    touchStartY =
+      e.touches[0].clientY;
 
-        lastTouchX =
-            event.touches[0].clientX;
-
-    },
-    {passive:false}
+  },
+  {passive:false}
 );
 
 
 game.addEventListener(
-    "touchmove",
-    function(event){
+  "touchmove",
+  function(e){
 
-        if(
-            event.target.closest(
-                "#menu"
-            ) ||
-            event.target.closest(
-                "#pauseMenu"
-            )
-        ){
+    if(
+      !running ||
+      paused ||
+      crashed
+    ){
+      return;
+    }
 
-            return;
-        }
+    e.preventDefault();
 
-        event.preventDefault();
+    const x =
+      e.touches[0].clientX;
 
-        if(
-            !running ||
-            paused ||
-            crashed
-        ){
+    const y =
+      e.touches[0].clientY;
 
-            return;
-        }
+    const dx =
+      x - lastTouchX;
 
-        const currentX =
-            event.touches[0].clientX;
+    movePlayer(
+      playerX + dx
+    );
 
-        const movement =
-            currentX -
-            lastTouchX;
+    lastTouchX = x;
 
-        movePlayer(
-            playerX +
-            movement
-        );
+    /* SWIPE UP FOR NITRO */
 
-        lastTouchX =
-            currentX;
+    if(
+      touchStartY - y > 60 &&
+      nitro > 10
+    ){
 
-    },
-    {passive:false}
+      activateNitro();
+
+      touchStartY = y;
+    }
+
+  },
+  {passive:false}
 );
 
 
@@ -1260,331 +1468,187 @@ game.addEventListener(
 
 function createRoadLines(){
 
-    roadLines.forEach(
-        line => line.remove()
-    );
+  roadLines.forEach(
+    x => x.remove()
+  );
 
-    roadLines = [];
+  roadLines=[];
 
-    for(
-        let i=0;
-        i<9;
-        i++
-    ){
+  for(
+    let i=0;
+    i<9;
+    i++
+  ){
 
-        const line =
-            document.createElement(
-                "div"
-            );
+    const line =
+      document.createElement("div");
 
-        line.className =
-            "roadLine";
+    line.className =
+      "roadLine";
 
-        line.style.top =
-            (i * 130 - 120) +
-            "px";
+    line.style.top =
+      (i*130-120)+"px";
 
-        road.appendChild(line);
+    road.appendChild(line);
 
-        roadLines.push(line);
-    }
+    roadLines.push(line);
+  }
 }
 
 
 function updateRoad(delta){
 
-    roadLines.forEach(
-        function(line){
+  roadLines.forEach(
+    line => {
 
-            let y =
-                parseFloat(
-                    line.style.top
-                );
+      let y =
+        parseFloat(
+          line.style.top
+        );
 
-            y +=
-                gameSpeed *
-                delta;
-
-            if(
-                y >
-                window.innerHeight
-            ){
-
-                y = -100;
-            }
-
-            line.style.top =
-                y + "px";
-        }
-    );
-}
-
-
-/* ==========================================
-   MOVING SIDE SCENERY
-========================================== */
-
-function createScenery(){
-
-    const types = [
-        "tree",
-        "palm",
-        "building",
-        "bush"
-    ];
-
-    const type =
-        types[
-            Math.floor(
-                Math.random() *
-                types.length
-            )
-        ];
-
-    let element;
-
-    if(type === "tree"){
-
-        element =
-            document.createElement(
-                "div"
-            );
-
-        element.className =
-            "tree";
-
-        element.innerHTML =
-            '<div class="leaves"></div>' +
-            '<div class="trunk"></div>';
-
-    }
-
-    if(type === "palm"){
-
-        element =
-            document.createElement(
-                "div"
-            );
-
-        element.className =
-            "palm";
-
-        element.innerHTML =
-            '<div class="palmTrunk"></div>' +
-            '<div class="crown"></div>' +
-            '<div class="leaf l1"></div>' +
-            '<div class="leaf l2"></div>' +
-            '<div class="leaf l3"></div>' +
-            '<div class="leaf l4"></div>' +
-            '<div class="leaf l5"></div>' +
-            '<div class="leaf l6"></div>' +
-            '<div class="coconut"></div>';
-    }
-
-    if(type === "building"){
-
-        element =
-            document.createElement(
-                "div"
-            );
-
-        element.className =
-            "building";
-
-        element.innerHTML =
-            '<div class="roof"></div>' +
-            '<div class="buildingBody">' +
-            '<div class="window w1"></div>' +
-            '<div class="window w2"></div>' +
-            '<div class="door"></div>' +
-            '</div>';
-    }
-
-    if(type === "bush"){
-
-        element =
-            document.createElement(
-                "div"
-            );
-
-        element.className =
-            "bush";
-    }
-
-
-    const leftSide =
-        Math.random() < .5;
-
-    if(leftSide){
-
-        element.style.left =
-            (Math.random() * 5) +
-            "%";
-
-    }else{
-
-        element.style.right =
-            (Math.random() * 5) +
-            "%";
-    }
-
-    element.style.top =
-        "-190px";
-
-    element.dataset.speed =
+      y +=
         gameSpeed *
-        (.7 + Math.random() * .5);
+        delta *
+        (nitroActive ? 1.8 : 1);
 
-    scenery.appendChild(element);
+      if(
+        y >
+        window.innerHeight
+      ){
+        y=-100;
+      }
 
-    sceneryObjects.push(element);
-}
-
-
-function updateScenery(delta){
-
-    for(
-        let i=sceneryObjects.length-1;
-        i>=0;
-        i--
-    ){
-
-        const object =
-            sceneryObjects[i];
-
-        let y =
-            parseFloat(
-                object.style.top
-            );
-
-        y +=
-            parseFloat(
-                object.dataset.speed
-            ) *
-            delta;
-
-        object.style.top =
-            y + "px";
-
-        if(
-            y >
-            window.innerHeight + 200
-        ){
-
-            object.remove();
-
-            sceneryObjects.splice(
-                i,
-                1
-            );
-        }
+      line.style.top =
+        y+"px";
     }
+  );
 }
 
 
 /* ==========================================
-   ENEMIES
+   TRAFFIC CAR CREATION
 ========================================== */
 
 function createEnemy(){
 
-    const colors = [
-        "green",
-        "yellow",
-        "blue",
-        "white",
-        "purple"
-    ];
+  const colors = [
+    "carGreen",
+    "carYellow",
+    "carBlue",
+    "carWhite",
+    "carPurple"
+  ];
 
-    const enemy =
-        document.createElement(
-            "div"
-        );
+  const enemy =
+    document.createElement("div");
 
-    enemy.className =
-        "enemy " +
-        colors[
-            Math.floor(
-                Math.random() *
-                colors.length
-            )
-        ];
+  enemy.className =
+    "traffic";
 
-    enemy.style.left =
-        Math.random() *
-        (road.clientWidth - 58) +
-        "px";
+  enemy.innerHTML =
 
-    enemy.style.top =
-        (-120 -
-        Math.random() * 250) +
-        "px";
+    '<div class="trafficBody '+
+    colors[
+      Math.floor(
+        Math.random()*colors.length
+      )
+    ]+'"></div>' +
 
-    enemy.dataset.speed =
-        gameSpeed *
-        (.65 +
-        Math.random() * .9);
+    '<div class="trafficWheel tw1"></div>' +
+    '<div class="trafficWheel tw2"></div>' +
+    '<div class="trafficWheel tw3"></div>' +
+    '<div class="trafficWheel tw4"></div>' +
 
-    road.appendChild(enemy);
+    '<div class="trafficRoof"></div>' +
 
-    enemies.push(enemy);
+    '<div class="windshieldFront"></div>' +
+    '<div class="windshieldRear"></div>' +
+
+    '<div class="headLight hl1"></div>' +
+    '<div class="headLight hl2"></div>' +
+
+    '<div class="tailLight tl1"></div>' +
+    '<div class="tailLight tl2"></div>';
+
+  enemy.style.left =
+    (
+      10 +
+      Math.random() *
+      (road.clientWidth-70)
+    )+"px";
+
+  enemy.style.top =
+    (
+      -150 -
+      Math.random()*250
+    )+"px";
+
+  enemy.dataset.speed =
+    gameSpeed *
+    (.65 + Math.random()*.75);
+
+  road.appendChild(enemy);
+
+  enemies.push(enemy);
 }
 
 
+/* ==========================================
+   ENEMY UPDATE
+========================================== */
+
 function updateEnemies(delta){
 
-    for(
-        let i=enemies.length-1;
-        i>=0;
-        i--
+  for(
+    let i=enemies.length-1;
+    i>=0;
+    i--
+  ){
+
+    const enemy =
+      enemies[i];
+
+    let y =
+      parseFloat(
+        enemy.style.top
+      );
+
+    y +=
+      parseFloat(
+        enemy.dataset.speed
+      ) *
+      delta *
+      (nitroActive ? 1.5 : 1);
+
+    enemy.style.top =
+      y+"px";
+
+    if(
+      isColliding(
+        player,
+        enemy
+      )
     ){
 
-        const enemy =
-            enemies[i];
+      hitPlayer(enemy);
 
-        let y =
-            parseFloat(
-                enemy.style.top
-            );
-
-        y +=
-            parseFloat(
-                enemy.dataset.speed
-            ) *
-            delta;
-
-        enemy.style.top =
-            y + "px";
-
-        if(
-            isColliding(
-                player,
-                enemy
-            )
-        ){
-
-            endGame();
-
-            return;
-        }
-
-        if(
-            y >
-            window.innerHeight + 120
-        ){
-
-            enemy.remove();
-
-            enemies.splice(
-                i,
-                1
-            );
-
-            score += 10;
-
-            updateScore();
-        }
+      return;
     }
+
+    if(
+      y >
+      window.innerHeight+150
+    ){
+
+      enemy.remove();
+
+      enemies.splice(i,1);
+
+      score += 10;
+
+      updateScore();
+    }
+  }
 }
 
 
@@ -1594,219 +1658,316 @@ function updateEnemies(delta){
 
 function createCoin(){
 
-    const coin =
-        document.createElement(
-            "div"
-        );
+  const coin =
+    document.createElement("div");
 
-    coin.className =
-        "coin";
+  coin.className =
+    "coin";
 
-    coin.style.left =
-        (
-            15 +
-            Math.random() *
-            (road.clientWidth - 50)
-        ) + "px";
+  coin.style.left =
+    (
+      15 +
+      Math.random() *
+      (road.clientWidth-50)
+    )+"px";
 
-    coin.style.top =
-        (
-            -60 -
-            Math.random() * 150
-        ) + "px";
+  coin.style.top =
+    (
+      -70 -
+      Math.random()*180
+    )+"px";
 
-    road.appendChild(coin);
+  road.appendChild(coin);
 
-    coinObjects.push(coin);
+  coinObjects.push(coin);
 }
 
 
 function updateCoins(delta){
 
-    for(
-        let i=coinObjects.length-1;
-        i>=0;
-        i--
+  for(
+    let i=coinObjects.length-1;
+    i>=0;
+    i--
+  ){
+
+    const coin =
+      coinObjects[i];
+
+    let y =
+      parseFloat(
+        coin.style.top
+      );
+
+    y +=
+      gameSpeed *
+      delta *
+      (nitroActive ? 1.6 : 1);
+
+    coin.style.top =
+      y+"px";
+
+    if(
+      isColliding(
+        player,
+        coin
+      )
     ){
 
-        const coin =
-            coinObjects[i];
+      const rect =
+        coin.getBoundingClientRect();
 
-        let y =
-            parseFloat(
-                coin.style.top
-            );
+      createCoinEffect(
+        rect.left,
+        rect.top
+      );
 
-        y +=
-            gameSpeed *
-            delta;
+      beep(
+        900,
+        .12,
+        "square"
+      );
 
-        coin.style.top =
-            y + "px";
+      coin.remove();
 
-        if(
-            isColliding(
-                player,
-                coin
-            )
-        ){
+      coinObjects.splice(i,1);
 
-            const rect =
-                coin.getBoundingClientRect();
+      totalCoins++;
 
-            createCoinEffect(
-                rect.left,
-                rect.top
-            );
+      score += 25;
 
-            beep(
-                900,
-                .12,
-                "square"
-            );
+      coinsText.innerText =
+        totalCoins;
 
-            coin.remove();
+      localStorage.setItem(
+        "crazyRoadCoins",
+        totalCoins
+      );
 
-            coinObjects.splice(
-                i,
-                1
-            );
+      updateScore();
 
-            totalCoins++;
-
-            score += 25;
-
-            coinsText.innerText =
-                totalCoins;
-
-            localStorage.setItem(
-                "crazyRoadCoins",
-                totalCoins
-            );
-
-            updateScore();
-
-            continue;
-        }
-
-        if(
-            y >
-            window.innerHeight + 60
-        ){
-
-            coin.remove();
-
-            coinObjects.splice(
-                i,
-                1
-            );
-        }
+      continue;
     }
+
+    if(
+      y >
+      window.innerHeight+70
+    ){
+
+      coin.remove();
+
+      coinObjects.splice(i,1);
+    }
+  }
 }
 
 
 /* ==========================================
-   OBSTACLES
+   RARE OBSTACLES
 ========================================== */
 
 function createObstacle(){
 
-    const object =
-        document.createElement(
-            "div"
-        );
+  const object =
+    document.createElement("div");
 
-    if(
-        Math.random() < .5
-    ){
+  if(
+    Math.random()<.5
+  ){
 
-        object.className =
-            "cone";
+    object.className =
+      "cone";
 
-    }else{
+  }else{
 
-        object.className =
-            "obstacle";
-    }
+    object.className =
+      "obstacle";
+  }
 
-    object.style.left =
-        (
-            15 +
-            Math.random() *
-            (road.clientWidth - 70)
-        ) + "px";
+  object.style.left =
+    (
+      15 +
+      Math.random() *
+      (road.clientWidth-70)
+    )+"px";
 
-    object.style.top =
-        (
-            -80 -
-            Math.random() * 200
-        ) + "px";
+  object.style.top =
+    (
+      -100 -
+      Math.random()*200
+    )+"px";
 
-    object.dataset.speed =
-        gameSpeed *
-        (.8 +
-        Math.random() * .4);
+  object.dataset.speed =
+    gameSpeed *
+    (.8 + Math.random()*.4);
 
-    road.appendChild(object);
+  road.appendChild(object);
 
-    obstacles.push(object);
+  obstacles.push(object);
 }
 
 
 function updateObstacles(delta){
 
-    for(
-        let i=obstacles.length-1;
-        i>=0;
-        i--
+  for(
+    let i=obstacles.length-1;
+    i>=0;
+    i--
+  ){
+
+    const object =
+      obstacles[i];
+
+    let y =
+      parseFloat(
+        object.style.top
+      );
+
+    y +=
+      parseFloat(
+        object.dataset.speed
+      ) *
+      delta;
+
+    object.style.top =
+      y+"px";
+
+    if(
+      isColliding(
+        player,
+        object
+      )
     ){
 
-        const object =
-            obstacles[i];
+      hitPlayer(object);
 
-        let y =
-            parseFloat(
-                object.style.top
-            );
-
-        y +=
-            parseFloat(
-                object.dataset.speed
-            ) *
-            delta;
-
-        object.style.top =
-            y + "px";
-
-        if(
-            isColliding(
-                player,
-                object
-            )
-        ){
-
-            endGame();
-
-            return;
-        }
-
-        if(
-            y >
-            window.innerHeight + 100
-        ){
-
-            object.remove();
-
-            obstacles.splice(
-                i,
-                1
-            );
-
-            score += 5;
-
-            updateScore();
-        }
+      return;
     }
+
+    if(
+      y >
+      window.innerHeight+100
+    ){
+
+      object.remove();
+
+      obstacles.splice(i,1);
+
+      score += 5;
+
+      updateScore();
+    }
+  }
+}
+
+
+/* ==========================================
+   SCENERY
+========================================== */
+
+function createScenery(){
+
+  const types=[
+    "tree",
+    "palm"
+  ];
+
+  const type=
+    types[
+      Math.floor(
+        Math.random()*types.length
+      )
+    ];
+
+  const object=
+    document.createElement("div");
+
+  if(type==="tree"){
+
+    object.className="tree";
+
+    object.innerHTML=
+      '<div class="treeLeaves"></div>'+
+      '<div class="treeTrunk"></div>';
+
+  }else{
+
+    object.className="palm";
+
+    object.innerHTML=
+      '<div class="palmTrunk"></div>'+
+      '<div class="palmCenter"></div>'+
+      '<div class="palmLeaf pl1"></div>'+
+      '<div class="palmLeaf pl2"></div>'+
+      '<div class="palmLeaf pl3"></div>'+
+      '<div class="palmLeaf pl4"></div>'+
+      '<div class="palmLeaf pl5"></div>'+
+      '<div class="palmLeaf pl6"></div>'+
+      '<div class="coconut"></div>';
+  }
+
+  if(
+    Math.random()<.5
+  ){
+
+    object.style.left=
+      (Math.random()*4)+"%";
+
+  }else{
+
+    object.style.right=
+      (Math.random()*4)+"%";
+  }
+
+  object.style.top="-190px";
+
+  object.dataset.speed=
+    gameSpeed*
+    (.7+Math.random()*.5);
+
+  document
+    .getElementById("scenery")
+    .appendChild(object);
+
+  sceneryObjects.push(object);
+}
+
+
+function updateScenery(delta){
+
+  for(
+    let i=sceneryObjects.length-1;
+    i>=0;
+    i--
+  ){
+
+    const object=
+      sceneryObjects[i];
+
+    let y=
+      parseFloat(
+        object.style.top
+      );
+
+    y+=
+      parseFloat(
+        object.dataset.speed
+      )*
+      delta;
+
+    object.style.top=
+      y+"px";
+
+    if(
+      y>
+      window.innerHeight+220
+    ){
+
+      object.remove();
+
+      sceneryObjects.splice(i,1);
+    }
+  }
 }
 
 
@@ -1816,60 +1977,194 @@ function updateObstacles(delta){
 
 function isColliding(a,b){
 
-    const A =
-        a.getBoundingClientRect();
+  const A=
+    a.getBoundingClientRect();
 
-    const B =
-        b.getBoundingClientRect();
+  const B=
+    b.getBoundingClientRect();
 
-    return !(
-        A.bottom < B.top ||
-        A.top > B.bottom ||
-        A.right < B.left ||
-        A.left > B.right
-    );
+  /*
+    Slightly smaller collision box
+    makes the game fairer.
+  */
+
+  const padding=9;
+
+  return !(
+    A.right-padding < B.left+padding ||
+    A.left+padding > B.right-padding ||
+    A.bottom-padding < B.top+padding ||
+    A.top+padding > B.bottom-padding
+  );
 }
 
 
 /* ==========================================
-   SCORE / SPEED
+   HIT
+========================================== */
+
+function hitPlayer(object){
+
+  if(
+    object &&
+    object.parentNode
+  ){
+    object.remove();
+  }
+
+  lives--;
+
+  livesText.innerText=
+    lives;
+
+  createCrashEffect();
+
+  beep(
+    120,
+    .35,
+    "sawtooth"
+  );
+
+  if(lives<=0){
+
+    endGame();
+
+    return;
+  }
+
+  player.style.opacity=".35";
+
+  setTimeout(
+    function(){
+
+      player.style.opacity="1";
+
+    },
+    1400
+  );
+}
+
+
+/* ==========================================
+   SCORE / DIFFICULTY
 ========================================== */
 
 function updateScore(){
 
-    scoreText.innerText =
-        score;
+  scoreText.innerText=
+    score;
 
-    const level =
-        Math.floor(
-            score / 500
-        );
+  const level=
+    Math.floor(
+      score/500
+    );
 
-    const newSpeed =
-        5 +
-        level * 2;
+  gameSpeed=
+    5+
+    level*1.25;
 
-    if(
-        newSpeed !==
-        gameSpeed
-    ){
+  displaySpeed=
+    Math.round(
+      100+
+      level*22
+    );
 
-        gameSpeed =
-            newSpeed;
+  speedText.innerText=
+    displaySpeed;
+}
 
-        displaySpeed =
-            100 +
-            level * 30;
 
-        speedText.innerText =
-            displaySpeed;
+/* ==========================================
+   NITRO
+========================================== */
 
-        beep(
-            600,
-            .15,
-            "sawtooth"
-        );
-    }
+function activateNitro(){
+
+  if(
+    nitroActive ||
+    nitro<10 ||
+    !running ||
+    paused
+  ){
+    return;
+  }
+
+  nitroActive=true;
+
+  const flame=
+    document.createElement("div");
+
+  flame.className=
+    "nitroFlame";
+
+  player.appendChild(flame);
+
+  beep(
+    250,
+    .2,
+    "sawtooth"
+  );
+
+  const timer=
+    setInterval(
+      function(){
+
+        nitro-=1.5;
+
+        nitroBar.style.width=
+          Math.max(
+            0,
+            nitro
+          )+"%";
+
+        if(nitro<=0){
+
+          nitroActive=false;
+
+          clearInterval(timer);
+
+          flame.remove();
+        }
+
+      },
+      50
+    );
+
+  setTimeout(
+    function(){
+
+      nitroActive=false;
+
+      clearInterval(timer);
+
+      if(
+        flame.parentNode
+      ){
+        flame.remove();
+      }
+
+    },
+    3500
+  );
+}
+
+
+function rechargeNitro(delta){
+
+  if(
+    !nitroActive &&
+    nitro<100
+  ){
+
+    nitro+=
+      .025*delta;
+
+    if(nitro>100)
+      nitro=100;
+
+    nitroBar.style.width=
+      nitro+"%";
+  }
 }
 
 
@@ -1877,66 +2172,120 @@ function updateScore(){
    EFFECTS
 ========================================== */
 
-function createCoinEffect(x,y){
+function createCrashEffect(){
 
-    const effect =
-        document.createElement(
-            "div"
-        );
+  const effect=
+    document.createElement("div");
 
-    effect.className =
-        "coinPop";
+  effect.className=
+    "crash";
 
-    effect.innerText =
-        "+25";
+  effect.style.left=
+    (playerX-50)+"px";
 
-    effect.style.left =
-        x + "px";
+  effect.style.top=
+    (window.innerHeight-180)+"px";
 
-    effect.style.top =
-        y + "px";
+  game.appendChild(effect);
 
-    game.appendChild(effect);
-
-    setTimeout(
-        function(){
-
-            effect.remove();
-
-        },
-        700
-    );
+  setTimeout(
+    ()=>effect.remove(),
+    600
+  );
 }
 
 
-function createCrashEffect(){
+function createCoinEffect(x,y){
 
-    const effect =
-        document.createElement(
-            "div"
+  const effect=
+    document.createElement("div");
+
+  effect.className=
+    "coinPop";
+
+  effect.innerText=
+    "+25";
+
+  effect.style.left=
+    x+"px";
+
+  effect.style.top=
+    y+"px";
+
+  game.appendChild(effect);
+
+  setTimeout(
+    ()=>effect.remove(),
+    700
+  );
+}
+
+
+/* ==========================================
+   COUNTDOWN
+========================================== */
+
+function startCountdown(){
+
+  return new Promise(
+    resolve=>{
+
+      let number=3;
+
+      countdown.style.display=
+        "flex";
+
+      countdown.innerText=
+        number;
+
+      const timer=
+        setInterval(
+          function(){
+
+            number--;
+
+            if(number>0){
+
+              countdown.innerText=
+                number;
+
+              beep(
+                400,
+                .12,
+                "square"
+              );
+
+            }else{
+
+              countdown.innerText=
+                "GO!";
+
+              beep(
+                800,
+                .2,
+                "square"
+              );
+
+              setTimeout(
+                function(){
+
+                  countdown.style.display=
+                    "none";
+
+                  clearInterval(timer);
+
+                  resolve();
+
+                },
+                600
+              );
+            }
+
+          },
+          700
         );
-
-    effect.className =
-        "crash";
-
-    effect.style.left =
-        (playerX - 50) +
-        "px";
-
-    effect.style.top =
-        (window.innerHeight - 180) +
-        "px";
-
-    game.appendChild(effect);
-
-    setTimeout(
-        function(){
-
-            effect.remove();
-
-        },
-        600
-    );
+    }
+  );
 }
 
 
@@ -1946,108 +2295,108 @@ function createCrashEffect(){
 
 function gameLoop(time){
 
-    if(!running)
-        return;
+  if(!running)
+    return;
 
-    if(paused){
-
-        requestAnimationFrame(
-            gameLoop
-        );
-
-        return;
-    }
-
-    if(!lastTime)
-        lastTime = time;
-
-    let delta =
-        (time - lastTime) /
-        16.67;
-
-    if(delta > 2)
-        delta = 2;
-
-    lastTime = time;
-
-    updateRoad(delta);
-
-    updateScenery(delta);
-
-    updateEnemies(delta);
-
-    updateCoins(delta);
-
-    updateObstacles(delta);
-
-
-    /* ENEMIES */
-
-    const enemyDelay =
-        Math.max(
-            450,
-            1150 -
-            score * .4
-        );
-
-    if(
-        time - lastEnemy >
-        enemyDelay +
-        Math.random() * 700
-    ){
-
-        createEnemy();
-
-        lastEnemy = time;
-    }
-
-
-    /* COINS */
-
-    if(
-        time - lastCoin >
-        650 +
-        Math.random() * 900
-    ){
-
-        createCoin();
-
-        lastCoin = time;
-    }
-
-
-    /* OBSTACLES */
-
-    if(
-        score > 100 &&
-        time - lastObstacle >
-        1500 +
-        Math.random() * 1500
-    ){
-
-        createObstacle();
-
-        lastObstacle = time;
-    }
-
-
-    /* SCENERY */
-
-    if(
-        time - lastScenery >
-        700 +
-        Math.random() * 900
-    ){
-
-        createScenery();
-
-        lastScenery = time;
-    }
-
+  if(paused){
 
     requestAnimationFrame(
-        gameLoop
+      gameLoop
     );
+
+    return;
+  }
+
+  if(!lastTime)
+    lastTime=time;
+
+  let delta=
+    (time-lastTime)/16.67;
+
+  if(delta>2)
+    delta=2;
+
+  lastTime=time;
+
+  updateRoad(delta);
+
+  updateScenery(delta);
+
+  updateEnemies(delta);
+
+  updateCoins(delta);
+
+  updateObstacles(delta);
+
+  rechargeNitro(delta);
+
+
+  /* Traffic */
+
+  const enemyDelay=
+    Math.max(
+      800,
+      1600-score*.22
+    );
+
+  if(
+    time-lastEnemy>
+    enemyDelay+
+    Math.random()*900
+  ){
+
+    createEnemy();
+
+    lastEnemy=time;
+  }
+
+
+  /* Coins */
+
+  if(
+    time-lastCoin>
+    750+
+    Math.random()*1000
+  ){
+
+    createCoin();
+
+    lastCoin=time;
+  }
+
+
+  /* VERY FEW BARRIERS */
+
+  if(
+    score>250 &&
+    time-lastObstacle>
+    4000+
+    Math.random()*3500
+  ){
+
+    createObstacle();
+
+    lastObstacle=time;
+  }
+
+
+  /* Scenery */
+
+  if(
+    time-lastScenery>
+    700+
+    Math.random()*700
+  ){
+
+    createScenery();
+
+    lastScenery=time;
+  }
+
+
+  requestAnimationFrame(
+    gameLoop
+  );
 }
 
 
@@ -2055,73 +2404,71 @@ function gameLoop(time){
    START
 ========================================== */
 
-function startGame(){
+async function startGame(){
 
-    startAudio();
+  startAudio();
 
-    if(
-        audioContext &&
-        audioContext.state ===
-        "suspended"
-    ){
+  if(
+    audioContext &&
+    audioContext.state==="suspended"
+  ){
+    audioContext.resume();
+  }
 
-        audioContext.resume();
-    }
+  score=0;
 
-    score = 0;
+  lives=3;
 
-    gameSpeed = 5;
+  gameSpeed=5;
 
-    displaySpeed = 100;
+  displaySpeed=100;
 
-    running = true;
+  nitro=100;
 
-    paused = false;
+  nitroActive=false;
 
-    crashed = false;
+  running=true;
 
-    scoreText.innerText =
-        "0";
+  paused=false;
 
-    speedText.innerText =
-        "100";
+  crashed=false;
 
-    menu.style.display =
-        "none";
+  scoreText.innerText="0";
 
-    pauseMenu.style.display =
-        "none";
+  livesText.innerText="3";
 
-    pauseButton.style.display =
-        "block";
+  speedText.innerText="100";
 
-    setPlayerStart();
+  nitroBar.style.width="100%";
 
-    createRoadLines();
+  menu.style.display="none";
 
-    lastEnemy =
-        performance.now();
+  pauseMenu.style.display="none";
 
-    lastCoin =
-        performance.now();
+  pauseButton.style.display="block";
 
-    lastObstacle =
-        performance.now();
+  setPlayerStart();
 
-    lastScenery =
-        performance.now();
+  createRoadLines();
 
-    lastTime = 0;
+  lastEnemy=performance.now();
 
-    beep(
-        500,
-        .15,
-        "square"
-    );
+  lastCoin=performance.now();
 
-    requestAnimationFrame(
-        gameLoop
-    );
+  lastObstacle=performance.now();
+
+  lastScenery=performance.now();
+
+  lastTime=0;
+
+  await startCountdown();
+
+  if(!running)
+    return;
+
+  requestAnimationFrame(
+    gameLoop
+  );
 }
 
 
@@ -2131,80 +2478,76 @@ function startGame(){
 
 function endGame(){
 
-    if(crashed)
-        return;
+  if(crashed)
+    return;
 
-    running = false;
+  running=false;
 
-    crashed = true;
+  crashed=true;
 
-    createCrashEffect();
+  createCrashEffect();
 
-    beep(
-        100,
-        .5,
-        "sawtooth"
+  beep(
+    80,
+    .5,
+    "sawtooth"
+  );
+
+  if(score>best){
+
+    best=score;
+
+    localStorage.setItem(
+      "crazyRoadBest",
+      best
     );
+  }
 
-    if(
-        score > best
-    ){
+  bestText.innerText=best;
 
-        best = score;
+  menuBest.innerText=best;
 
-        localStorage.setItem(
-            "crazyRoadBest",
-            best
-        );
-    }
+  menuCoins.innerText=totalCoins;
 
-    bestText.innerText =
-        best;
+  menuTitle.innerText=
+    "💥 GAME OVER";
 
-    menuBest.innerText =
-        best;
+  menuSubtitle.innerText=
+    "Score: "+score+
+    " • Coins: "+totalCoins;
 
-    menuCoins.innerText =
-        totalCoins;
+  playButton.innerText=
+    "🔄 PLAY AGAIN";
 
-    menuTitle.innerText =
-        "💥 GAME OVER";
+  menu.style.display=
+    "flex";
 
-    menuSubtitle.innerText =
-        "You survived the Crazy Road!";
+  pauseButton.style.display=
+    "none";
 
-    playButton.innerText =
-        "🔄 PLAY AGAIN";
+  enemies.forEach(
+    x=>x.remove()
+  );
 
-    menu.style.display =
-        "flex";
+  coinObjects.forEach(
+    x=>x.remove()
+  );
 
-    pauseButton.style.display =
-        "none";
+  obstacles.forEach(
+    x=>x.remove()
+  );
 
-    enemies.forEach(
-        x => x.remove()
-    );
+  sceneryObjects.forEach(
+    x=>x.remove()
+  );
 
-    coinObjects.forEach(
-        x => x.remove()
-    );
+  enemies=[];
 
-    obstacles.forEach(
-        x => x.remove()
-    );
+  coinObjects=[];
 
-    sceneryObjects.forEach(
-        x => x.remove()
-    );
+  obstacles=[];
 
-    enemies = [];
-
-    coinObjects = [];
-
-    obstacles = [];
-
-    sceneryObjects = [];
+  sceneryObjects=[];
 }
 
 
@@ -2213,84 +2556,76 @@ function endGame(){
 ========================================== */
 
 pauseButton.addEventListener(
-    "click",
-    function(event){
+  "click",
+  function(e){
 
-        event.stopPropagation();
+    e.stopPropagation();
 
-        if(
-            !running ||
-            crashed
-        )
-            return;
+    if(
+      !running ||
+      crashed
+    )
+      return;
 
-        paused = true;
+    paused=true;
 
-        pauseMenu.style.display =
-            "flex";
-    }
+    pauseMenu.style.display=
+      "flex";
+  }
 );
 
-
-/* ==========================================
-   RESUME
-========================================== */
 
 resumeButton.addEventListener(
-    "click",
-    function(event){
+  "click",
+  function(e){
 
-        event.stopPropagation();
+    e.stopPropagation();
 
-        paused = false;
+    paused=false;
 
-        pauseMenu.style.display =
-            "none";
+    pauseMenu.style.display=
+      "none";
 
-        lastTime =
-            performance.now();
-    }
+    lastTime=
+      performance.now();
+  }
 );
 
 
-/* ==========================================
-   QUIT
-========================================== */
-
 quitButton.addEventListener(
-    "click",
-    function(event){
+  "click",
+  function(e){
 
-        event.stopPropagation();
+    e.stopPropagation();
 
-        running = false;
+    running=false;
 
-        paused = false;
+    paused=false;
 
-        pauseMenu.style.display =
-            "none";
+    pauseMenu.style.display=
+      "none";
 
-        pauseButton.style.display =
-            "none";
+    pauseButton.style.display=
+      "none";
 
-        menuTitle.innerText =
-            "CRAZY ROAD";
+    menuTitle.innerText=
+      "CRAZY ROAD";
 
-        menuSubtitle.innerText =
-            "2D HIGHWAY RACER";
+    menuSubtitle.innerText=
+      "V3.0 — TOP-DOWN F1 RACER";
 
-        playButton.innerText =
-            "▶ PLAY";
+    playButton.innerText=
+      "▶ PLAY";
 
-        menuBest.innerText =
-            best;
+    menuBest.innerText=
+      best;
 
-        menuCoins.innerText =
-            totalCoins;
+    menuCoins.innerText=
+      totalCoins;
 
-        menu.style.display =
-            "flex";
-    }
+    menu.style.display=
+      "flex";
+  }
 );
 
 
@@ -2299,13 +2634,13 @@ quitButton.addEventListener(
 ========================================== */
 
 playButton.addEventListener(
-    "click",
-    function(event){
+  "click",
+  function(e){
 
-        event.stopPropagation();
+    e.stopPropagation();
 
-        startGame();
-    }
+    startGame();
+  }
 );
 
 
@@ -2314,27 +2649,26 @@ playButton.addEventListener(
 ========================================== */
 
 soundButton.addEventListener(
-    "click",
-    function(event){
+  "click",
+  function(e){
 
-        event.stopPropagation();
+    e.stopPropagation();
 
-        soundOn =
-            !soundOn;
+    soundOn=!soundOn;
 
-        if(soundOn){
+    if(soundOn){
 
-            soundButton.innerText =
-                "🔊 SOUND ON";
+      soundButton.innerText=
+        "🔊 SOUND ON";
 
-            startAudio();
+      startAudio();
 
-        }else{
+    }else{
 
-            soundButton.innerText =
-                "🔇 SOUND OFF";
-        }
+      soundButton.innerText=
+        "🔇 SOUND OFF";
     }
+  }
 );
 
 
@@ -2343,18 +2677,11 @@ soundButton.addEventListener(
 ========================================== */
 
 window.addEventListener(
-    "resize",
-    function(){
+  "resize",
+  function(){
 
-        if(!running){
-
-            setPlayerStart();
-
-        }else{
-
-            movePlayer(playerX);
-        }
-    }
+    movePlayer(playerX);
+  }
 );
 
 
