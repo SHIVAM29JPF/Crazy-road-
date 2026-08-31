@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>Crazy Road</title>
+<title>Crazy Road V2.0</title>
 
 <style>
 
@@ -20,7 +18,7 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #222;
+    background: #151515;
     font-family: Arial, sans-serif;
     touch-action: none;
 }
@@ -33,23 +31,17 @@ html, body {
     background: #555;
 }
 
-
-/* =========================
-   ROAD
-========================= */
-
 #road {
     position: absolute;
     left: 8%;
     width: 84%;
     height: 100%;
-    background:
-        linear-gradient(
-            90deg,
-            #292929 0%,
-            #3b3b3b 50%,
-            #292929 100%
-        );
+    background: linear-gradient(
+        90deg,
+        #252525,
+        #3c3c3c,
+        #252525
+    );
 
     border-left: 6px solid white;
     border-right: 6px solid white;
@@ -70,126 +62,146 @@ html, body {
 
     background: white;
 
-    border-radius: 4px;
+    border-radius: 5px;
 
     left: 50%;
-}
-
-
-/* =========================
-   PLAYER CAR
-========================= */
-
-.car {
-
-    position: absolute;
-
-    width: 58px;
-    height: 105px;
-
-    border-radius: 18px 18px 12px 12px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #8b0000,
-            #ff1717,
-            #b00000
-        );
-
-    box-shadow:
-        0 5px 15px rgba(0,0,0,0.7),
-        inset 5px 0 5px rgba(255,255,255,0.25),
-        inset -5px 0 5px rgba(0,0,0,0.25);
-
-    z-index: 10;
 
     transform: translateX(-50%);
 }
 
 
-/* Windshield */
+/* =========================
+   PLAYER F1 CAR
+========================= */
 
-.car::before {
+#car {
+    position: absolute;
 
+    width: 64px;
+    height: 110px;
+
+    left: 50%;
+    bottom: 55px;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        90deg,
+        #750000,
+        #ff1717,
+        #b00000
+    );
+
+    border-radius: 18px 18px 12px 12px;
+
+    box-shadow:
+        0 6px 16px rgba(0,0,0,.8),
+        inset 5px 0 5px rgba(255,255,255,.2);
+
+    z-index: 20;
+}
+
+
+/* Cockpit */
+
+#car::before {
     content: "";
 
     position: absolute;
 
-    width: 38px;
-    height: 28px;
+    width: 40px;
+    height: 30px;
 
-    left: 10px;
-    top: 16px;
+    left: 12px;
+    top: 18px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #111,
-            #4d5965,
-            #111
-        );
+    background: linear-gradient(
+        135deg,
+        #080808,
+        #56616b,
+        #080808
+    );
 
-    border-radius: 9px;
-
-    border: 2px solid #222;
+    border-radius: 10px;
 }
 
 
-/* White center stripe */
+/* F1 center stripe */
 
-.car::after {
-
+#car::after {
     content: "";
 
     position: absolute;
 
     width: 7px;
-    height: 90px;
+    height: 95px;
 
-    left: 25px;
+    left: 28px;
     top: 8px;
 
-    background: rgba(255,255,255,0.8);
+    background: white;
 
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 
-/* Wheels */
+/* F1 wings */
 
-.wheel {
-
+.f1wing {
     position: absolute;
 
-    width: 9px;
-    height: 25px;
+    left: -12px;
+
+    width: 88px;
+    height: 9px;
 
     background: #111;
+
+    border-radius: 5px;
+}
+
+.frontWing {
+    top: 4px;
+}
+
+.rearWing {
+    bottom: 2px;
+}
+
+
+/* Player wheels */
+
+.playerWheel {
+    position: absolute;
+
+    width: 10px;
+    height: 28px;
+
+    background: #080808;
 
     border-radius: 5px;
 
     z-index: -1;
 }
 
-.wheel.left {
-    left: -6px;
-    top: 22px;
+.pwl {
+    left: -7px;
+    top: 27px;
 }
 
-.wheel.right {
-    right: -6px;
-    top: 22px;
+.pwr {
+    right: -7px;
+    top: 27px;
 }
 
-.wheel.left2 {
-    left: -6px;
-    bottom: 18px;
+.pwl2 {
+    left: -7px;
+    bottom: 20px;
 }
 
-.wheel.right2 {
-    right: -6px;
-    bottom: 18px;
+.pwr2 {
+    right: -7px;
+    bottom: 20px;
 }
 
 
@@ -198,26 +210,20 @@ html, body {
 ========================= */
 
 .enemy {
-
     position: absolute;
 
     width: 58px;
     height: 105px;
 
-    border-radius: 18px 18px 12px 12px;
+    border-radius: 17px 17px 11px 11px;
 
     box-shadow:
-        0 5px 12px rgba(0,0,0,0.7);
+        0 5px 12px rgba(0,0,0,.75);
 
-    z-index: 8;
-
+    z-index: 15;
 }
 
-
-/* Enemy windshield */
-
 .enemy::before {
-
     content: "";
 
     position: absolute;
@@ -226,24 +232,19 @@ html, body {
     height: 28px;
 
     left: 10px;
-    top: 16px;
+    top: 15px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #111,
-            #59636b,
-            #111
-        );
+    background: linear-gradient(
+        135deg,
+        #111,
+        #59636b,
+        #111
+    );
 
     border-radius: 9px;
 }
 
-
-/* Enemy stripe */
-
 .enemy::after {
-
     content: "";
 
     position: absolute;
@@ -254,63 +255,54 @@ html, body {
     left: 26px;
     top: 8px;
 
-    background: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,.5);
 
     border-radius: 4px;
-
 }
 
-
-/* Enemy colours */
-
 .green {
-    background:
-        linear-gradient(
-            90deg,
-            #087000,
-            #20d51d,
-            #087000
-        );
+    background: linear-gradient(
+        90deg,
+        #087000,
+        #20d51d,
+        #087000
+    );
 }
 
 .yellow {
-    background:
-        linear-gradient(
-            90deg,
-            #b07b00,
-            #ffd21c,
-            #b07b00
-        );
+    background: linear-gradient(
+        90deg,
+        #b07b00,
+        #ffd21c,
+        #b07b00
+    );
 }
 
 .blue {
-    background:
-        linear-gradient(
-            90deg,
-            #003d9e,
-            #087cff,
-            #003d9e
-        );
+    background: linear-gradient(
+        90deg,
+        #003d9e,
+        #087cff,
+        #003d9e
+    );
 }
 
 .white {
-    background:
-        linear-gradient(
-            90deg,
-            #999,
-            #ffffff,
-            #aaa
-        );
+    background: linear-gradient(
+        90deg,
+        #999,
+        #fff,
+        #aaa
+    );
 }
 
 .purple {
-    background:
-        linear-gradient(
-            90deg,
-            #55008f,
-            #b62cff,
-            #55008f
-        );
+    background: linear-gradient(
+        90deg,
+        #55008f,
+        #b62cff,
+        #55008f
+    );
 }
 
 
@@ -319,49 +311,110 @@ html, body {
 ========================= */
 
 .coin {
-
     position: absolute;
 
-    width: 34px;
-    height: 34px;
+    width: 35px;
+    height: 35px;
 
     border-radius: 50%;
 
-    background:
-        radial-gradient(
-            circle,
-            #fff36a 0%,
-            #ffd000 35%,
-            #f09b00 75%,
-            #a85d00 100%
-        );
+    background: radial-gradient(
+        circle,
+        #fff36a,
+        #ffd000 40%,
+        #ef9800 75%,
+        #9b5500
+    );
 
     border: 3px solid #ffe45c;
 
     box-shadow:
         0 0 12px #ffd000,
-        0 0 25px rgba(255,208,0,0.5);
+        0 0 25px rgba(255,208,0,.5);
 
-    z-index: 6;
+    z-index: 13;
 
+    animation: coinSpin .55s linear infinite;
 }
 
-
-/* Coin star */
-
 .coin::after {
-
     content: "★";
 
     position: absolute;
 
-    color: #fff8a5;
+    color: white;
 
-    font-size: 19px;
+    font-size: 18px;
 
     left: 6px;
     top: 3px;
+}
 
+@keyframes coinSpin {
+
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(90deg);
+    }
+
+    100% {
+        transform: rotateY(180deg);
+    }
+
+}
+
+
+/* =========================
+   OBSTACLES
+========================= */
+
+.obstacle {
+    position: absolute;
+
+    width: 55px;
+    height: 38px;
+
+    background: repeating-linear-gradient(
+        135deg,
+        #ff7b00,
+        #ff7b00 9px,
+        #222 9px,
+        #222 18px
+    );
+
+    border: 3px solid white;
+
+    border-radius: 7px;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,.7);
+
+    z-index: 14;
+}
+
+.cone {
+    position: absolute;
+
+    width: 28px;
+    height: 42px;
+
+    background: linear-gradient(
+        90deg,
+        #b83c00,
+        #ff6500,
+        #b83c00
+    );
+
+    clip-path: polygon(
+        50% 0,
+        100% 100%,
+        0 100%
+    );
+
+    z-index: 14;
 }
 
 
@@ -370,34 +423,65 @@ html, body {
 ========================= */
 
 #hud {
-
     position: absolute;
 
     top: 12px;
     left: 12px;
 
-    z-index: 30;
+    z-index: 50;
 
     color: white;
 
-    background: rgba(0,0,0,0.55);
+    background: rgba(0,0,0,.6);
 
-    padding: 10px 14px;
+    padding: 9px 13px;
 
-    border-radius: 12px;
+    border-radius: 13px;
 
-    font-size: 19px;
+    font-size: 18px;
 
-    line-height: 1.6;
+    line-height: 1.55;
 
     font-weight: bold;
 
     text-shadow: 2px 2px 3px black;
-
 }
 
 #speedText {
-    color: #ffdd00;
+    color: #ffe000;
+}
+
+
+/* =========================
+   PAUSE
+========================= */
+
+#pause {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    z-index: 60;
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    border: 2px solid white;
+
+    background: rgba(0,0,0,.55);
+
+    color: white;
+
+    font-size: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    user-select: none;
 }
 
 
@@ -406,40 +490,108 @@ html, body {
 ========================= */
 
 #message {
-
     position: absolute;
 
     left: 50%;
     top: 50%;
 
-    transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
 
-    z-index: 50;
+    z-index: 100;
 
     color: white;
 
     text-align: center;
 
-    font-size: 30px;
+    font-size: 29px;
 
     font-weight: bold;
 
     text-shadow: 2px 2px 5px black;
 
-    background: rgba(0,0,0,0.65);
+    background: rgba(0,0,0,.75);
 
-    padding: 25px 35px;
+    padding: 25px 30px;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
-    border: 2px solid rgba(255,255,255,0.4);
+    border: 2px solid rgba(255,255,255,.45);
 
-    pointer-events: none;
+    min-width: 260px;
+}
+
+
+/* =========================
+   CRASH EFFECT
+========================= */
+
+.crash {
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    border: 6px solid #ffb000;
+
+    box-shadow:
+        0 0 20px #ff6500,
+        0 0 40px #ff0000;
+
+    animation: crashAnim .5s ease-out forwards;
+
+    z-index: 90;
+}
+
+@keyframes crashAnim {
+
+    0% {
+        transform: scale(.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   COIN EFFECT
+========================= */
+
+.coinPop {
+    position: absolute;
+
+    color: #ffe000;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    z-index: 90;
+
+    animation: coinPop .7s ease-out forwards;
+}
+
+@keyframes coinPop {
+
+    0% {
+        transform: translateY(0) scale(.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-60px) scale(1.4);
+        opacity: 0;
+    }
 
 }
 
 </style>
-
 </head>
 
 
@@ -458,6 +610,11 @@ html, body {
 
         <br>
 
+        🥇 Best:
+        <span id="best">0</span>
+
+        <br>
+
         🪙 Coins:
         <span id="coins">0</span>
 
@@ -470,24 +627,35 @@ html, body {
     </div>
 
 
+    <div id="pause">Ⅱ</div>
+
+
     <div id="message">
 
-        CRAZY ROAD
+        🏎️ CRAZY ROAD
 
         <br><br>
 
         Slide to Drive
 
+        <br><br>
+
+        Tap to Start
+
     </div>
 
 
-    <div id="car" class="car">
+    <div id="car">
 
-        <div class="wheel left"></div>
-        <div class="wheel right"></div>
+        <div class="f1wing frontWing"></div>
 
-        <div class="wheel left2"></div>
-        <div class="wheel right2"></div>
+        <div class="f1wing rearWing"></div>
+
+        <div class="playerWheel pwl"></div>
+        <div class="playerWheel pwr"></div>
+
+        <div class="playerWheel pwl2"></div>
+        <div class="playerWheel pwr2"></div>
 
     </div>
 
@@ -497,9 +665,9 @@ html, body {
 <script>
 
 
-/* ==================================
-   GAME VARIABLES
-================================== */
+/* ==========================================
+   ELEMENTS
+========================================== */
 
 const game =
     document.getElementById("game");
@@ -516,12 +684,22 @@ const message =
 const scoreText =
     document.getElementById("score");
 
+const bestText =
+    document.getElementById("best");
+
 const coinsText =
     document.getElementById("coins");
 
 const speedText =
     document.getElementById("speedText");
 
+const pauseButton =
+    document.getElementById("pause");
+
+
+/* ==========================================
+   VARIABLES
+========================================== */
 
 let playerX = 0;
 
@@ -529,11 +707,23 @@ let score = 0;
 
 let coins = 0;
 
+let totalCoins =
+    Number(
+        localStorage.getItem("crazyRoadCoins")
+    ) || 0;
+
+let best =
+    Number(
+        localStorage.getItem("crazyRoadBest")
+    ) || 0;
+
 let gameSpeed = 5;
 
 let displaySpeed = 100;
 
 let running = false;
+
+let paused = false;
 
 let crashed = false;
 
@@ -541,20 +731,112 @@ let enemies = [];
 
 let coinObjects = [];
 
+let obstacles = [];
+
 let roadLines = [];
 
 let lastEnemyTime = 0;
 
 let lastCoinTime = 0;
 
+let lastObstacleTime = 0;
+
 let lastTime = 0;
 
 let lastTouchX = 0;
 
+let audioStarted = false;
 
-/* ==================================
-   SET PLAYER POSITION
-================================== */
+let audioContext;
+
+
+/* ==========================================
+   DISPLAY SAVED DATA
+========================================== */
+
+bestText.innerText = best;
+
+coinsText.innerText = totalCoins;
+
+
+/* ==========================================
+   AUDIO
+========================================== */
+
+function startAudio() {
+
+    if (audioStarted)
+        return;
+
+    try {
+
+        audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+        audioStarted = true;
+
+    } catch (e) {
+
+        console.log("Audio unavailable");
+
+    }
+
+}
+
+
+function beep(
+    frequency,
+    duration,
+    type = "sine"
+) {
+
+    if (!audioContext)
+        return;
+
+    const oscillator =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+
+    oscillator.type = type;
+
+    oscillator.frequency.value =
+        frequency;
+
+    gain.gain.setValueAtTime(
+        .08,
+        audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        .001,
+        audioContext.currentTime + duration
+    );
+
+
+    oscillator.connect(gain);
+
+    gain.connect(audioContext.destination);
+
+
+    oscillator.start();
+
+    oscillator.stop(
+        audioContext.currentTime +
+        duration
+    );
+
+}
+
+
+/* ==========================================
+   PLAYER POSITION
+========================================== */
 
 function setPlayerStart() {
 
@@ -565,15 +847,12 @@ function setPlayerStart() {
     player.style.left =
         playerX + "px";
 
-    player.style.bottom =
-        "55px";
-
 }
 
 
-/* ==================================
-   SMOOTH SLIDE CONTROL
-================================== */
+/* ==========================================
+   SMOOTH SLIDING
+========================================== */
 
 game.addEventListener(
     "touchstart",
@@ -581,13 +860,7 @@ game.addEventListener(
 
         event.preventDefault();
 
-
-        const touch =
-            event.touches[0];
-
-
-        lastTouchX =
-            touch.clientX;
+        startAudio();
 
 
         if (!running && !crashed) {
@@ -601,7 +874,16 @@ game.addEventListener(
 
             location.reload();
 
+            return;
+
         }
+
+
+        const touch =
+            event.touches[0];
+
+        lastTouchX =
+            touch.clientX;
 
     },
     { passive: false }
@@ -615,7 +897,7 @@ game.addEventListener(
         event.preventDefault();
 
 
-        if (!running || crashed)
+        if (!running || paused || crashed)
             return;
 
 
@@ -627,30 +909,16 @@ game.addEventListener(
             touch.clientX;
 
 
-        /*
-
-        The important part:
-
-        Move car by exactly the
-        amount your finger moved.
-
-        Small finger movement =
-        small car movement.
-
-        */
-
-        const difference =
+        const movement =
             currentX - lastTouchX;
 
 
-        playerX += difference;
+        playerX += movement;
 
 
         lastTouchX =
             currentX;
 
-
-        /* Keep car inside road */
 
         const roadLeft =
             road.offsetLeft;
@@ -660,28 +928,28 @@ game.addEventListener(
             road.clientWidth;
 
 
-        const halfCar =
+        const half =
             player.offsetWidth / 2;
 
 
         if (
             playerX <
-            roadLeft + halfCar
+            roadLeft + half
         ) {
 
             playerX =
-                roadLeft + halfCar;
+                roadLeft + half;
 
         }
 
 
         if (
             playerX >
-            roadRight - halfCar
+            roadRight - half
         ) {
 
             playerX =
-                roadRight - halfCar;
+                roadRight - half;
 
         }
 
@@ -694,9 +962,56 @@ game.addEventListener(
 );
 
 
-/* ==================================
+/* ==========================================
+   PAUSE
+========================================== */
+
+pauseButton.addEventListener(
+    "touchstart",
+    function(event) {
+
+        event.preventDefault();
+
+        if (!running || crashed)
+            return;
+
+
+        paused =
+            !paused;
+
+
+        if (paused) {
+
+            pauseButton.innerText =
+                "▶";
+
+            message.innerHTML =
+                "⏸️ PAUSED";
+
+            message.style.display =
+                "block";
+
+        } else {
+
+            pauseButton.innerText =
+                "Ⅱ";
+
+            message.style.display =
+                "none";
+
+            lastTime =
+                performance.now();
+
+        }
+
+    },
+    { passive: false }
+);
+
+
+/* ==========================================
    ROAD LINES
-================================== */
+========================================== */
 
 function createRoadLines() {
 
@@ -731,37 +1046,31 @@ function createRoadLines() {
 }
 
 
-/* ==================================
-   CREATE RANDOM ENEMY
-================================== */
+/* ==========================================
+   RANDOM ENEMY
+========================================== */
 
 function createEnemy() {
 
-    if (!running)
+    if (!running || paused)
         return;
 
 
     const colors = [
-
         "green",
         "yellow",
         "blue",
         "white",
         "purple"
-
     ];
 
 
     const enemy =
         document.createElement("div");
 
+
     enemy.className =
-        "enemy";
-
-
-    /* Random colour */
-
-    const randomColor =
+        "enemy " +
         colors[
             Math.floor(
                 Math.random() *
@@ -770,50 +1079,36 @@ function createEnemy() {
         ];
 
 
-    enemy.classList.add(
-        randomColor
-    );
-
-
-    /* Random horizontal position */
-
     const roadWidth =
         road.clientWidth;
 
-    const carWidth =
-        58;
 
-
-    const randomX =
+    const x =
         Math.random() *
-        (roadWidth - carWidth);
+        (roadWidth - 58);
 
 
     enemy.style.left =
-        randomX + "px";
+        x + "px";
 
-
-    /* Random starting position */
 
     enemy.style.top =
         (
-            -130 -
+            -120 -
             Math.random() * 250
         ) + "px";
 
 
-    /* Random speed */
-
-    const individualSpeed =
+    const randomSpeed =
         gameSpeed *
         (
-            0.70 +
-            Math.random() * 0.75
+            .65 +
+            Math.random() * .9
         );
 
 
     enemy.dataset.speed =
-        individualSpeed;
+        randomSpeed;
 
 
     road.appendChild(enemy);
@@ -823,40 +1118,37 @@ function createEnemy() {
 }
 
 
-/* ==================================
-   CREATE COIN
-================================== */
+/* ==========================================
+   COIN
+========================================== */
 
 function createCoin() {
 
-    if (!running)
+    if (!running || paused)
         return;
 
 
     const coin =
         document.createElement("div");
 
+
     coin.className =
         "coin";
 
 
-    const roadWidth =
-        road.clientWidth;
-
-
-    const randomX =
-        20 +
+    const x =
+        15 +
         Math.random() *
-        (roadWidth - 55);
+        (road.clientWidth - 50);
 
 
     coin.style.left =
-        randomX + "px";
+        x + "px";
 
 
     coin.style.top =
         (
-            -50 -
+            -60 -
             Math.random() * 150
         ) + "px";
 
@@ -868,9 +1160,65 @@ function createCoin() {
 }
 
 
-/* ==================================
+/* ==========================================
+   OBSTACLE
+========================================== */
+
+function createObstacle() {
+
+    if (!running || paused)
+        return;
+
+
+    const useCone =
+        Math.random() < .5;
+
+
+    const obstacle =
+        document.createElement("div");
+
+
+    obstacle.className =
+        useCone
+        ? "cone"
+        : "obstacle";
+
+
+    const x =
+        15 +
+        Math.random() *
+        (road.clientWidth - 70);
+
+
+    obstacle.style.left =
+        x + "px";
+
+
+    obstacle.style.top =
+        (
+            -80 -
+            Math.random() * 200
+        ) + "px";
+
+
+    obstacle.dataset.speed =
+        gameSpeed *
+        (
+            .8 +
+            Math.random() * .4
+        );
+
+
+    road.appendChild(obstacle);
+
+    obstacles.push(obstacle);
+
+}
+
+
+/* ==========================================
    COLLISION
-================================== */
+========================================== */
 
 function isColliding(a, b) {
 
@@ -891,9 +1239,9 @@ function isColliding(a, b) {
 }
 
 
-/* ==================================
-   ROAD MOVEMENT
-================================== */
+/* ==========================================
+   ROAD UPDATE
+========================================== */
 
 function updateRoad(delta) {
 
@@ -929,9 +1277,9 @@ function updateRoad(delta) {
 }
 
 
-/* ==================================
-   ENEMY MOVEMENT
-================================== */
+/* ==========================================
+   ENEMY UPDATE
+========================================== */
 
 function updateEnemies(delta) {
 
@@ -951,21 +1299,19 @@ function updateEnemies(delta) {
             );
 
 
-        const enemySpeed =
+        const speed =
             parseFloat(
                 enemy.dataset.speed
             );
 
 
         y +=
-            enemySpeed * delta;
+            speed * delta;
 
 
         enemy.style.top =
             y + "px";
 
-
-        /* Collision */
 
         if (
             isColliding(
@@ -980,8 +1326,6 @@ function updateEnemies(delta) {
 
         }
 
-
-        /* Enemy passed */
 
         if (
             y >
@@ -1008,9 +1352,9 @@ function updateEnemies(delta) {
 }
 
 
-/* ==================================
-   COIN MOVEMENT
-================================== */
+/* ==========================================
+   COIN UPDATE
+========================================== */
 
 function updateCoins(delta) {
 
@@ -1038,14 +1382,29 @@ function updateCoins(delta) {
             y + "px";
 
 
-        /* Collect coin */
-
         if (
             isColliding(
                 player,
                 coin
             )
         ) {
+
+            const rect =
+                coin.getBoundingClientRect();
+
+
+            createCoinEffect(
+                rect.left,
+                rect.top
+            );
+
+
+            beep(
+                900,
+                .12,
+                "square"
+            );
+
 
             coin.remove();
 
@@ -1054,14 +1413,22 @@ function updateCoins(delta) {
 
             coins++;
 
+            totalCoins++;
+
             score += 25;
 
 
-            coinsText.innerText =
-                coins;
-
             scoreText.innerText =
                 score;
+
+            coinsText.innerText =
+                totalCoins;
+
+
+            localStorage.setItem(
+                "crazyRoadCoins",
+                totalCoins
+            );
 
 
             checkSpeed();
@@ -1071,11 +1438,9 @@ function updateCoins(delta) {
         }
 
 
-        /* Coin leaves screen */
-
         if (
             y >
-            window.innerHeight + 50
+            window.innerHeight + 60
         ) {
 
             coin.remove();
@@ -1089,9 +1454,80 @@ function updateCoins(delta) {
 }
 
 
-/* ==================================
-   SPEED SYSTEM
-================================== */
+/* ==========================================
+   OBSTACLE UPDATE
+========================================== */
+
+function updateObstacles(delta) {
+
+    for (
+        let i = obstacles.length - 1;
+        i >= 0;
+        i--
+    ) {
+
+        const obstacle =
+            obstacles[i];
+
+
+        let y =
+            parseFloat(
+                obstacle.style.top
+            );
+
+
+        const speed =
+            parseFloat(
+                obstacle.dataset.speed
+            );
+
+
+        y +=
+            speed * delta;
+
+
+        obstacle.style.top =
+            y + "px";
+
+
+        if (
+            isColliding(
+                player,
+                obstacle
+            )
+        ) {
+
+            endGame();
+
+            return;
+
+        }
+
+
+        if (
+            y >
+            window.innerHeight + 100
+        ) {
+
+            obstacle.remove();
+
+            obstacles.splice(i, 1);
+
+            score += 5;
+
+            scoreText.innerText =
+                score;
+
+        }
+
+    }
+
+}
+
+
+/* ==========================================
+   SPEED
+========================================== */
 
 function checkSpeed() {
 
@@ -1102,7 +1538,8 @@ function checkSpeed() {
 
 
     const newSpeed =
-        5 + level * 2;
+        5 +
+        level * 2;
 
 
     if (
@@ -1121,14 +1558,103 @@ function checkSpeed() {
         speedText.innerText =
             displaySpeed;
 
+
+        beep(
+            600,
+            .15,
+            "sawtooth"
+        );
+
     }
 
 }
 
 
-/* ==================================
+/* ==========================================
+   COIN EFFECT
+========================================== */
+
+function createCoinEffect(x, y) {
+
+    const effect =
+        document.createElement("div");
+
+
+    effect.className =
+        "coinPop";
+
+
+    effect.innerText =
+        "+25";
+
+
+    effect.style.left =
+        x + "px";
+
+
+    effect.style.top =
+        y + "px";
+
+
+    game.appendChild(effect);
+
+
+    setTimeout(
+        function() {
+
+            effect.remove();
+
+        },
+        700
+    );
+
+}
+
+
+/* ==========================================
+   CRASH EFFECT
+========================================== */
+
+function createCrashEffect() {
+
+    const effect =
+        document.createElement("div");
+
+
+    effect.className =
+        "crash";
+
+
+    effect.style.left =
+        (
+            playerX - 50
+        ) + "px";
+
+
+    effect.style.top =
+        (
+            window.innerHeight - 180
+        ) + "px";
+
+
+    game.appendChild(effect);
+
+
+    setTimeout(
+        function() {
+
+            effect.remove();
+
+        },
+        600
+    );
+
+}
+
+
+/* ==========================================
    GAME LOOP
-================================== */
+========================================== */
 
 function gameLoop(time) {
 
@@ -1136,12 +1662,25 @@ function gameLoop(time) {
         return;
 
 
+    if (paused) {
+
+        requestAnimationFrame(
+            gameLoop
+        );
+
+        return;
+
+    }
+
+
     if (!lastTime)
         lastTime = time;
 
 
     let delta =
-        (time - lastTime) / 16.67;
+        (
+            time - lastTime
+        ) / 16.67;
 
 
     if (delta > 2)
@@ -1158,13 +1697,23 @@ function gameLoop(time) {
 
     updateCoins(delta);
 
+    updateObstacles(delta);
+
 
     /* Random enemy timing */
 
+    const enemyDelay =
+        Math.max(
+            450,
+            1150 -
+            score * .4
+        );
+
+
     if (
         time - lastEnemyTime >
-        700 +
-        Math.random() * 1000
+        enemyDelay +
+        Math.random() * 700
     ) {
 
         createEnemy();
@@ -1175,17 +1724,35 @@ function gameLoop(time) {
     }
 
 
-    /* Random coin timing */
+    /* Coins */
 
     if (
         time - lastCoinTime >
-        600 +
-        Math.random() * 1000
+        650 +
+        Math.random() * 900
     ) {
 
         createCoin();
 
         lastCoinTime =
+            time;
+
+    }
+
+
+    /* Obstacles start appearing
+       more often later */
+
+    if (
+        score > 100 &&
+        time - lastObstacleTime >
+        1500 +
+        Math.random() * 1500
+    ) {
+
+        createObstacle();
+
+        lastObstacleTime =
             time;
 
     }
@@ -1198,9 +1765,9 @@ function gameLoop(time) {
 }
 
 
-/* ==================================
+/* ==========================================
    START GAME
-================================== */
+========================================== */
 
 function startGame() {
 
@@ -1208,7 +1775,12 @@ function startGame() {
         return;
 
 
+    startAudio();
+
+
     running = true;
+
+    paused = false;
 
     crashed = false;
 
@@ -1217,15 +1789,13 @@ function startGame() {
 
     coins = 0;
 
+
     gameSpeed = 5;
 
     displaySpeed = 100;
 
 
     scoreText.innerText =
-        "0";
-
-    coinsText.innerText =
         "0";
 
     speedText.innerText =
@@ -1236,6 +1806,10 @@ function startGame() {
         "none";
 
 
+    pauseButton.style.display =
+        "flex";
+
+
     setPlayerStart();
 
     createRoadLines();
@@ -1244,11 +1818,23 @@ function startGame() {
     lastEnemyTime =
         performance.now();
 
+
     lastCoinTime =
         performance.now();
 
 
+    lastObstacleTime =
+        performance.now();
+
+
     lastTime = 0;
+
+
+    beep(
+        500,
+        .15,
+        "square"
+    );
 
 
     requestAnimationFrame(
@@ -1258,9 +1844,9 @@ function startGame() {
 }
 
 
-/* ==================================
+/* ==========================================
    GAME OVER
-================================== */
+========================================== */
 
 function endGame() {
 
@@ -1273,12 +1859,47 @@ function endGame() {
     crashed = true;
 
 
+    createCrashEffect();
+
+
+    beep(
+        100,
+        .5,
+        "sawtooth"
+    );
+
+
+    if (
+        score > best
+    ) {
+
+        best =
+            score;
+
+
+        localStorage.setItem(
+            "crazyRoadBest",
+            best
+        );
+
+    }
+
+
+    bestText.innerText =
+        best;
+
+
     message.innerHTML =
 
         "💥 CRASH!<br><br>" +
 
         "🏆 Score: " +
         score +
+
+        "<br>" +
+
+        "🥇 Best: " +
+        best +
 
         "<br>" +
 
@@ -1307,16 +1928,26 @@ function endGame() {
 
     coinObjects = [];
 
+
+    obstacles.forEach(
+        obstacle => obstacle.remove()
+    );
+
+    obstacles = [];
+
 }
 
 
-/* ==================================
-   INITIAL POSITION
-================================== */
+/* ==========================================
+   INITIAL SETUP
+========================================== */
 
 setPlayerStart();
 
 createRoadLines();
+
+pauseButton.style.display =
+    "none";
 
 
 </script>
