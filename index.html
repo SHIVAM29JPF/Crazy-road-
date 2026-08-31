@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>Crazy Road V3.0</title>
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<title>Crazy Road V3.1</title>
 
 <style>
 *{
@@ -15,7 +17,7 @@ html,body{
   width:100%;
   height:100%;
   overflow:hidden;
-  background:#4eaa48;
+  background:#55ad4e;
   font-family:Arial,sans-serif;
   touch-action:none;
 }
@@ -25,10 +27,10 @@ html,body{
   width:100vw;
   height:100vh;
   overflow:hidden;
-  background:#5caf50;
+  background:#55ad4e;
 }
 
-/* ---------- ROAD ---------- */
+/* ================= ROAD ================= */
 
 #road{
   position:absolute;
@@ -38,11 +40,11 @@ html,body{
   background:
     linear-gradient(
       90deg,
-      #242424 0%,
-      #3d3d3d 8%,
+      #222 0%,
+      #3c3c3c 9%,
       #303030 50%,
-      #3d3d3d 92%,
-      #242424 100%
+      #3c3c3c 91%,
+      #222 100%
     );
   border-left:5px solid white;
   border-right:5px solid white;
@@ -56,11 +58,11 @@ html,body{
   height:85px;
   left:50%;
   transform:translateX(-50%);
-  background:#fff;
+  background:white;
   border-radius:5px;
 }
 
-/* ---------- SCENERY ---------- */
+/* ================= SCENERY ================= */
 
 #scenery{
   position:absolute;
@@ -76,10 +78,8 @@ html,body{
   background:
     repeating-linear-gradient(
       90deg,
-      rgba(0,70,0,.09) 0px,
-      rgba(0,70,0,.09) 2px,
-      transparent 2px,
-      transparent 24px
+      rgba(0,70,0,.09) 0 2px,
+      transparent 2px 24px
     );
 }
 
@@ -177,7 +177,7 @@ html,body{
   z-index:3;
 }
 
-/* Buildings */
+/* Building */
 
 .building{
   position:absolute;
@@ -205,7 +205,7 @@ html,body{
   left:8px;
   bottom:0;
   background:linear-gradient(
-    90deg,#999,#eeeeee,#aaa
+    90deg,#999,#eee,#aaa
   );
   border:3px solid #666;
 }
@@ -238,19 +238,23 @@ html,body{
   border:2px solid #49301f;
 }
 
-/* ---------- TOP-DOWN F1 PLAYER ---------- */
+/* ================= F1 PLAYER ================= */
+
+/*
+   IMPORTANT:
+   The car is now higher above the bottom,
+   leaving a dedicated area for the Nitro bar.
+*/
 
 #car{
   position:absolute;
   width:82px;
   height:125px;
-  bottom:55px;
+  bottom:105px;
   transform:translateX(-50%);
-  z-index:40;
+  z-index:150;
   filter:drop-shadow(0 7px 6px rgba(0,0,0,.75));
 }
-
-/* Rear wing */
 
 .f1RearWing{
   position:absolute;
@@ -274,8 +278,6 @@ html,body{
 
 .f1RearSupport1{left:25px}
 .f1RearSupport2{right:25px}
-
-/* Main F1 body */
 
 .f1Body{
   position:absolute;
@@ -310,8 +312,6 @@ html,body{
   border:2px solid #ff6d6d;
 }
 
-/* Nose */
-
 .f1Nose{
   position:absolute;
   left:34px;
@@ -326,8 +326,6 @@ html,body{
   );
   z-index:3;
 }
-
-/* Front wing */
 
 .f1FrontWing{
   position:absolute;
@@ -352,8 +350,6 @@ html,body{
 
 .f1FrontWing:before{left:-7px}
 .f1FrontWing:after{right:-7px}
-
-/* Cockpit */
 
 .f1Cockpit{
   position:absolute;
@@ -384,8 +380,6 @@ html,body{
   border-radius:3px;
 }
 
-/* Halo */
-
 .halo{
   position:absolute;
   left:25px;
@@ -397,24 +391,21 @@ html,body{
   z-index:6;
 }
 
-/* Side pods */
-
 .sidePod{
   position:absolute;
   width:17px;
   height:47px;
   top:57px;
-  background:linear-gradient(
-    90deg,#790000,#e51616,#720000
-  );
+  background:
+    linear-gradient(
+      90deg,#790000,#e51616,#720000
+    );
   border-radius:8px;
   z-index:2;
 }
 
 .sideLeft{left:8px}
 .sideRight{right:8px}
-
-/* Wheels */
 
 .f1Wheel{
   position:absolute;
@@ -431,8 +422,6 @@ html,body{
 .f1wl2{left:5px;bottom:19px}
 .f1wr2{right:5px;bottom:19px}
 
-/* Racing stripe */
-
 .f1Stripe{
   position:absolute;
   left:39px;
@@ -445,17 +434,17 @@ html,body{
   opacity:.9;
 }
 
-/* ---------- NORMAL TOP-DOWN TRAFFIC CARS ---------- */
+/* ================= TRAFFIC CARS ================= */
 
 .traffic{
   position:absolute;
   width:68px;
   height:112px;
   z-index:25;
-  filter:drop-shadow(0 5px 5px rgba(0,0,0,.7));
+  filter:drop-shadow(
+    0 5px 5px rgba(0,0,0,.7)
+  );
 }
-
-/* Car body */
 
 .trafficBody{
   position:absolute;
@@ -470,8 +459,6 @@ html,body{
     inset -5px 0 7px rgba(0,0,0,.25);
 }
 
-/* Roof */
-
 .trafficRoof{
   position:absolute;
   left:15px;
@@ -480,17 +467,12 @@ html,body{
   height:52px;
   background:
     linear-gradient(
-      90deg,
-      #111,
-      #596b73 48%,
-      #111
+      90deg,#111,#596b73 48%,#111
     );
   border-radius:12px;
   border:2px solid #171717;
   z-index:4;
 }
-
-/* Front windshield */
 
 .windshieldFront{
   position:absolute;
@@ -500,16 +482,11 @@ html,body{
   height:17px;
   background:
     linear-gradient(
-      135deg,
-      #111,
-      #9ac4ce,
-      #111
+      135deg,#111,#9ac4ce,#111
     );
   border-radius:8px 8px 3px 3px;
   z-index:5;
 }
-
-/* Rear windshield */
 
 .windshieldRear{
   position:absolute;
@@ -519,16 +496,11 @@ html,body{
   height:15px;
   background:
     linear-gradient(
-      135deg,
-      #111,
-      #738d95,
-      #111
+      135deg,#111,#738d95,#111
     );
   border-radius:3px 3px 8px 8px;
   z-index:5;
 }
-
-/* Wheels */
 
 .trafficWheel{
   position:absolute;
@@ -544,8 +516,6 @@ html,body{
 .tw2{right:0;top:27px}
 .tw3{left:0;bottom:23px}
 .tw4{right:0;bottom:23px}
-
-/* Lights */
 
 .headLight{
   position:absolute;
@@ -573,8 +543,6 @@ html,body{
 
 .tl1{left:15px}
 .tl2{right:15px}
-
-/* Different car colors */
 
 .carGreen{
   background:linear-gradient(
@@ -606,7 +574,7 @@ html,body{
   );
 }
 
-/* ---------- COINS ---------- */
+/* ================= COINS ================= */
 
 .coin{
   position:absolute;
@@ -622,9 +590,8 @@ html,body{
       #9b5500 100%
     );
   border:3px solid #ffe55a;
-  box-shadow:
-    0 0 12px #ffd000;
-  z-index:20;
+  box-shadow:0 0 12px #ffd000;
+  z-index:30;
   animation:coinSpin .6s linear infinite;
 }
 
@@ -642,7 +609,7 @@ html,body{
   to{transform:rotateY(360deg)}
 }
 
-/* ---------- RARE BARRIERS ---------- */
+/* ================= OBSTACLES ================= */
 
 .obstacle{
   position:absolute;
@@ -651,10 +618,8 @@ html,body{
   background:
     repeating-linear-gradient(
       135deg,
-      #ff7200 0px,
-      #ff7200 9px,
-      #222 9px,
-      #222 18px
+      #ff7200 0 9px,
+      #222 9px 18px
     );
   border:3px solid white;
   border-radius:7px;
@@ -665,9 +630,10 @@ html,body{
   position:absolute;
   width:28px;
   height:42px;
-  background:linear-gradient(
-    90deg,#b53a00,#ff6b00,#b53a00
-  );
+  background:
+    linear-gradient(
+      90deg,#b53a00,#ff6b00,#b53a00
+    );
   clip-path:polygon(
     50% 0,
     100% 100%,
@@ -676,13 +642,13 @@ html,body{
   z-index:19;
 }
 
-/* ---------- HUD ---------- */
+/* ================= HUD ================= */
 
 #hud{
   position:absolute;
   top:12px;
   left:12px;
-  z-index:70;
+  z-index:200;
   color:white;
   background:rgba(0,0,0,.68);
   padding:8px 12px;
@@ -691,6 +657,7 @@ html,body{
   line-height:1.5;
   font-weight:bold;
   text-shadow:2px 2px 3px #000;
+  pointer-events:none;
 }
 
 #speedText{
@@ -701,28 +668,39 @@ html,body{
   color:#ff4a4a;
 }
 
-/* ---------- NITRO ---------- */
+/* ================= NITRO ================= */
+
+/*
+   NITRO IS NOW ABOVE THE BOTTOM EDGE
+   AND ABOVE THE GAME OBJECTS.
+*/
 
 #nitro{
   position:absolute;
   left:50%;
   transform:translateX(-50%);
-  bottom:15px;
-  z-index:70;
-  width:190px;
+  bottom:22px;
+  z-index:300;
+  width:min(190px,55vw);
   height:42px;
   border:2px solid white;
   border-radius:20px;
-  background:rgba(0,0,0,.72);
+  background:rgba(0,0,0,.82);
   overflow:hidden;
+  box-shadow:0 3px 12px rgba(0,0,0,.7);
+  pointer-events:none;
 }
 
 #nitroBar{
+  position:absolute;
+  left:0;
+  top:0;
   height:100%;
   width:100%;
-  background:linear-gradient(
-    90deg,#ff6500,#ffe000
-  );
+  background:
+    linear-gradient(
+      90deg,#ff6500,#ffe000
+    );
 }
 
 #nitroText{
@@ -733,10 +711,11 @@ html,body{
   justify-content:center;
   color:white;
   font-weight:bold;
+  font-size:14px;
   text-shadow:2px 2px 3px #000;
 }
 
-/* ---------- NITRO FLAME ---------- */
+/* ================= FLAME ================= */
 
 .nitroFlame{
   position:absolute;
@@ -761,13 +740,13 @@ html,body{
   to{transform:scaleY(1.25)}
 }
 
-/* ---------- PAUSE ---------- */
+/* ================= PAUSE ================= */
 
 #pause{
   position:absolute;
   right:14px;
   top:14px;
-  z-index:80;
+  z-index:250;
   width:48px;
   height:48px;
   border-radius:50%;
@@ -778,12 +757,12 @@ html,body{
   display:none;
 }
 
-/* ---------- MENU ---------- */
+/* ================= MENU ================= */
 
 #menu{
   position:absolute;
   inset:0;
-  z-index:100;
+  z-index:500;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -842,12 +821,12 @@ html,body{
   font-size:16px;
 }
 
-/* ---------- COUNTDOWN ---------- */
+/* ================= COUNTDOWN ================= */
 
 #countdown{
   position:absolute;
   inset:0;
-  z-index:90;
+  z-index:450;
   display:none;
   align-items:center;
   justify-content:center;
@@ -859,12 +838,12 @@ html,body{
     0 0 30px #ff2222;
 }
 
-/* ---------- PAUSE MENU ---------- */
+/* ================= PAUSE MENU ================= */
 
 #pauseMenu{
   position:absolute;
   inset:0;
-  z-index:95;
+  z-index:475;
   display:none;
   align-items:center;
   justify-content:center;
@@ -885,7 +864,7 @@ html,body{
   font-size:18px;
 }
 
-/* ---------- EFFECTS ---------- */
+/* ================= EFFECTS ================= */
 
 .crash{
   position:absolute;
@@ -897,7 +876,7 @@ html,body{
     0 0 20px #ff6500,
     0 0 40px red;
   animation:crashAnimation .5s ease-out forwards;
-  z-index:99;
+  z-index:600;
 }
 
 @keyframes crashAnimation{
@@ -916,7 +895,7 @@ html,body{
   color:#ffe000;
   font-size:22px;
   font-weight:bold;
-  z-index:99;
+  z-index:600;
   animation:coinAnimation .7s ease-out forwards;
 }
 
@@ -931,11 +910,14 @@ html,body{
   }
 }
 
+/* Small phones */
+
 @media(max-width:420px){
 
   #car{
     width:76px;
     height:118px;
+    bottom:105px;
   }
 
   #hud{
@@ -944,6 +926,12 @@ html,body{
 
   #nitro{
     width:165px;
+    height:40px;
+    bottom:18px;
+  }
+
+  #nitroText{
+    font-size:12px;
   }
 
   .title{
@@ -957,349 +945,342 @@ html,body{
 
 <div id="game">
 
-  <!-- SCENERY -->
+<!-- ================= SCENERY ================= -->
 
-  <div id="scenery">
+<div id="scenery">
 
-    <div class="grass"></div>
+  <div class="grass"></div>
 
-    <div class="tree" style="left:1%;top:13%">
-      <div class="treeLeaves"></div>
-      <div class="treeTrunk"></div>
-    </div>
-
-    <div class="tree" style="right:1%;top:42%">
-      <div class="treeLeaves"></div>
-      <div class="treeTrunk"></div>
-    </div>
-
-    <div class="palm" style="left:-2%;top:65%">
-      <div class="palmTrunk"></div>
-      <div class="palmCenter"></div>
-      <div class="palmLeaf pl1"></div>
-      <div class="palmLeaf pl2"></div>
-      <div class="palmLeaf pl3"></div>
-      <div class="palmLeaf pl4"></div>
-      <div class="palmLeaf pl5"></div>
-      <div class="palmLeaf pl6"></div>
-      <div class="coconut"></div>
-    </div>
-
-    <div class="building" style="right:0%;top:8%">
-      <div class="roof"></div>
-      <div class="buildingBody">
-        <div class="window w1"></div>
-        <div class="window w2"></div>
-        <div class="door"></div>
-      </div>
-    </div>
-
+  <div class="tree" style="left:1%;top:13%">
+    <div class="treeLeaves"></div>
+    <div class="treeTrunk"></div>
   </div>
 
-  <!-- ROAD -->
-
-  <div id="road"></div>
-
-  <!-- HUD -->
-
-  <div id="hud">
-    🏆 Score: <span id="score">0</span><br>
-    🥇 Best: <span id="best">0</span><br>
-    🪙 Coins: <span id="coins">0</span><br>
-    ❤️ Lives: <span id="livesText">3</span><br>
-    ⚡ <span id="speedText">100</span> km/h
+  <div class="tree" style="right:1%;top:42%">
+    <div class="treeLeaves"></div>
+    <div class="treeTrunk"></div>
   </div>
 
-  <!-- NITRO -->
-
-  <div id="nitro">
-    <div id="nitroBar"></div>
-    <div id="nitroText">🔥 NITRO — SWIPE UP</div>
+  <div class="palm" style="left:-2%;top:65%">
+    <div class="palmTrunk"></div>
+    <div class="palmCenter"></div>
+    <div class="palmLeaf pl1"></div>
+    <div class="palmLeaf pl2"></div>
+    <div class="palmLeaf pl3"></div>
+    <div class="palmLeaf pl4"></div>
+    <div class="palmLeaf pl5"></div>
+    <div class="palmLeaf pl6"></div>
+    <div class="coconut"></div>
   </div>
 
-  <!-- PAUSE -->
+  <div class="building" style="right:0%;top:8%">
+    <div class="roof"></div>
 
-  <button id="pause">Ⅱ</button>
-
-  <!-- COUNTDOWN -->
-
-  <div id="countdown"></div>
-
-  <!-- PLAYER F1 -->
-
-  <div id="car">
-
-    <div class="f1RearWing"></div>
-    <div class="f1RearSupport1"></div>
-    <div class="f1RearSupport2"></div>
-
-    <div class="f1Wheel f1wl1"></div>
-    <div class="f1Wheel f1wr1"></div>
-    <div class="f1Wheel f1wl2"></div>
-    <div class="f1Wheel f1wr2"></div>
-
-    <div class="sidePod sideLeft"></div>
-    <div class="sidePod sideRight"></div>
-
-    <div class="f1Body"></div>
-
-    <div class="f1Nose"></div>
-
-    <div class="f1FrontWing"></div>
-
-    <div class="f1Cockpit"></div>
-    <div class="halo"></div>
-
-    <div class="f1Stripe"></div>
-
+    <div class="buildingBody">
+      <div class="window w1"></div>
+      <div class="window w2"></div>
+      <div class="door"></div>
+    </div>
   </div>
 
-  <!-- MAIN MENU -->
+</div>
 
-  <div id="menu">
+<!-- ================= ROAD ================= -->
 
-    <div class="panel">
+<div id="road"></div>
 
-      <div class="title" id="menuTitle">
-        CRAZY ROAD
-      </div>
+<!-- ================= HUD ================= -->
 
-      <div class="subtitle" id="menuSubtitle">
-        V3.0 — TOP-DOWN F1 RACER
-      </div>
+<div id="hud">
+🏆 Score: <span id="score">0</span><br>
+🥇 Best: <span id="best">0</span><br>
+🪙 Coins: <span id="coins">0</span><br>
+❤️ Lives: <span id="livesText">3</span><br>
+⚡ <span id="speedText">100</span> km/h
+</div>
 
-      <div class="stat">
-        🥇 Best:
-        <span id="menuBest">0</span>
-      </div>
+<!-- ================= NITRO ================= -->
 
-      <div class="stat">
-        🪙 Coins:
-        <span id="menuCoins">0</span>
-      </div>
+<div id="nitro">
+  <div id="nitroBar"></div>
+  <div id="nitroText">
+    🔥 NITRO — SWIPE UP
+  </div>
+</div>
 
-      <button class="mainButton" id="playButton">
-        ▶ PLAY
-      </button>
+<button id="pause">Ⅱ</button>
 
-      <br>
+<div id="countdown"></div>
 
-      <button class="soundButton" id="soundButton">
-        🔊 SOUND ON
-      </button>
+<!-- ================= PLAYER ================= -->
 
+<div id="car">
+
+  <div class="f1RearWing"></div>
+
+  <div class="f1RearSupport1"></div>
+  <div class="f1RearSupport2"></div>
+
+  <div class="f1Wheel f1wl1"></div>
+  <div class="f1Wheel f1wr1"></div>
+
+  <div class="f1Wheel f1wl2"></div>
+  <div class="f1Wheel f1wr2"></div>
+
+  <div class="sidePod sideLeft"></div>
+  <div class="sidePod sideRight"></div>
+
+  <div class="f1Body"></div>
+
+  <div class="f1Nose"></div>
+
+  <div class="f1FrontWing"></div>
+
+  <div class="f1Cockpit"></div>
+
+  <div class="halo"></div>
+
+  <div class="f1Stripe"></div>
+
+</div>
+
+<!-- ================= MENU ================= -->
+
+<div id="menu">
+
+  <div class="panel">
+
+    <div class="title" id="menuTitle">
+      CRAZY ROAD
     </div>
 
-  </div>
-
-  <!-- PAUSE MENU -->
-
-  <div id="pauseMenu">
-
-    <div class="pauseBox">
-
-      <h1>⏸️ PAUSED</h1>
-
-      <button class="smallButton" id="resumeButton">
-        ▶ Resume
-      </button>
-
-      <button class="smallButton" id="quitButton">
-        🏠 Menu
-      </button>
-
+    <div class="subtitle" id="menuSubtitle">
+      V3.1 — TOP-DOWN F1 RACER
     </div>
+
+    <div class="stat">
+      🥇 Best:
+      <span id="menuBest">0</span>
+    </div>
+
+    <div class="stat">
+      🪙 Coins:
+      <span id="menuCoins">0</span>
+    </div>
+
+    <button class="mainButton" id="playButton">
+      ▶ PLAY
+    </button>
+
+    <br>
+
+    <button class="soundButton" id="soundButton">
+      🔊 SOUND ON
+    </button>
 
   </div>
 
 </div>
 
+<!-- ================= PAUSE ================= -->
+
+<div id="pauseMenu">
+
+  <div class="pauseBox">
+
+    <h1>⏸️ PAUSED</h1>
+
+    <button class="smallButton" id="resumeButton">
+      ▶ Resume
+    </button>
+
+    <button class="smallButton" id="quitButton">
+      🏠 Menu
+    </button>
+
+  </div>
+
+</div>
+
+</div>
+
 <script>
 
-/* ==========================================
-   ELEMENTS
-========================================== */
+/* ================= ELEMENTS ================= */
 
 const game =
-  document.getElementById("game");
+document.getElementById("game");
 
 const road =
-  document.getElementById("road");
+document.getElementById("road");
 
 const player =
-  document.getElementById("car");
+document.getElementById("car");
 
 const menu =
-  document.getElementById("menu");
+document.getElementById("menu");
 
 const pauseButton =
-  document.getElementById("pause");
+document.getElementById("pause");
 
 const pauseMenu =
-  document.getElementById("pauseMenu");
+document.getElementById("pauseMenu");
 
 const countdown =
-  document.getElementById("countdown");
+document.getElementById("countdown");
 
 const playButton =
-  document.getElementById("playButton");
+document.getElementById("playButton");
 
 const resumeButton =
-  document.getElementById("resumeButton");
+document.getElementById("resumeButton");
 
 const quitButton =
-  document.getElementById("quitButton");
+document.getElementById("quitButton");
 
 const soundButton =
-  document.getElementById("soundButton");
+document.getElementById("soundButton");
 
 const scoreText =
-  document.getElementById("score");
+document.getElementById("score");
 
 const bestText =
-  document.getElementById("best");
+document.getElementById("best");
 
 const coinsText =
-  document.getElementById("coins");
+document.getElementById("coins");
 
 const livesText =
-  document.getElementById("livesText");
+document.getElementById("livesText");
 
 const speedText =
-  document.getElementById("speedText");
+document.getElementById("speedText");
 
 const nitroBar =
-  document.getElementById("nitroBar");
+document.getElementById("nitroBar");
 
 const menuBest =
-  document.getElementById("menuBest");
+document.getElementById("menuBest");
 
 const menuCoins =
-  document.getElementById("menuCoins");
+document.getElementById("menuCoins");
 
 const menuTitle =
-  document.getElementById("menuTitle");
+document.getElementById("menuTitle");
 
 const menuSubtitle =
-  document.getElementById("menuSubtitle");
+document.getElementById("menuSubtitle");
 
 
-/* ==========================================
-   VARIABLES
-========================================== */
+/* ================= VARIABLES ================= */
 
-let playerX = 0;
+let playerX=0;
 
-let score = 0;
+let score=0;
 
-let best =
-  Number(localStorage.getItem(
-    "crazyRoadBest"
-  )) || 0;
+let best=
+Number(localStorage.getItem(
+"crazyRoadBest"
+))||0;
 
-let totalCoins =
-  Number(localStorage.getItem(
-    "crazyRoadCoins"
-  )) || 0;
+let totalCoins=
+Number(localStorage.getItem(
+"crazyRoadCoins"
+))||0;
 
-let lives = 3;
+let lives=3;
 
-let gameSpeed = 5;
+let gameSpeed=5;
 
-let displaySpeed = 100;
+let displaySpeed=100;
 
-let running = false;
+let running=false;
 
-let paused = false;
+let paused=false;
 
-let crashed = false;
+let crashed=false;
 
-let soundOn = true;
+let soundOn=true;
 
-let nitro = 100;
+let nitro=100;
 
-let nitroActive = false;
+let nitroActive=false;
 
-let enemies = [];
+let enemies=[];
 
-let coinObjects = [];
+let coinObjects=[];
 
-let obstacles = [];
+let obstacles=[];
 
-let roadLines = [];
+let roadLines=[];
 
-let sceneryObjects = [];
+let sceneryObjects=[];
 
-let lastEnemy = 0;
+let lastEnemy=0;
 
-let lastCoin = 0;
+let lastCoin=0;
 
-let lastObstacle = 0;
+let lastObstacle=0;
 
-let lastScenery = 0;
+let lastScenery=0;
 
-let lastTime = 0;
+let lastTime=0;
 
-let touchStartY = 0;
+let touchStartY=0;
 
-let lastTouchX = 0;
+let lastTouchX=0;
 
-let audioContext = null;
+let audioContext=null;
 
 
-/* ==========================================
-   INITIAL
-========================================== */
+/* ================= INITIAL ================= */
 
-bestText.innerText = best;
-coinsText.innerText = totalCoins;
-menuBest.innerText = best;
-menuCoins.innerText = totalCoins;
+bestText.innerText=best;
+
+coinsText.innerText=totalCoins;
+
+menuBest.innerText=best;
+
+menuCoins.innerText=totalCoins;
 
 
-/* ==========================================
-   AUDIO
-========================================== */
+/* ================= AUDIO ================= */
 
 function startAudio(){
 
-  if(!soundOn) return;
+  if(!soundOn)return;
 
-  if(audioContext) return;
+  if(audioContext)return;
 
   try{
 
-    audioContext =
-      new(
-        window.AudioContext ||
-        window.webkitAudioContext
-      )();
+    audioContext=
+    new(
+      window.AudioContext||
+      window.webkitAudioContext
+    )();
 
   }catch(e){}
 }
 
-
 function beep(
-  frequency,
-  duration,
-  type="sine"
+frequency,
+duration,
+type="sine"
 ){
 
-  if(
-    !soundOn ||
-    !audioContext
-  ) return;
+  if(!soundOn||!audioContext)return;
 
-  const oscillator =
-    audioContext.createOscillator();
+  const oscillator=
+  audioContext.createOscillator();
 
-  const gain =
-    audioContext.createGain();
+  const gain=
+  audioContext.createGain();
 
-  oscillator.type = type;
+  oscillator.type=type;
 
-  oscillator.frequency.value =
-    frequency;
+  oscillator.frequency.value=
+  frequency;
 
   gain.gain.setValueAtTime(
     .08,
@@ -1308,7 +1289,7 @@ function beep(
 
   gain.gain.exponentialRampToValueAtTime(
     .001,
-    audioContext.currentTime +
+    audioContext.currentTime+
     duration
   );
 
@@ -1321,155 +1302,145 @@ function beep(
   oscillator.start();
 
   oscillator.stop(
-    audioContext.currentTime +
+    audioContext.currentTime+
     duration
   );
 }
 
 
-/* ==========================================
-   PLAYER
-========================================== */
+/* ================= PLAYER ================= */
 
 function setPlayerStart(){
 
-  playerX =
-    road.offsetLeft +
-    road.clientWidth / 2;
+  playerX=
+  road.offsetLeft+
+  road.clientWidth/2;
 
-  player.style.left =
-    playerX + "px";
+  player.style.left=
+  playerX+"px";
 }
-
 
 function movePlayer(x){
 
-  const left =
-    road.offsetLeft;
+  const left=
+  road.offsetLeft;
 
-  const right =
-    road.offsetLeft +
-    road.clientWidth;
+  const right=
+  road.offsetLeft+
+  road.clientWidth;
 
-  const half =
-    player.offsetWidth / 2;
+  const half=
+  player.offsetWidth/2;
 
-  playerX = x;
+  playerX=x;
 
   if(
-    playerX <
-    left + half
+    playerX<
+    left+half
   ){
-    playerX =
-      left + half;
+    playerX=
+    left+half;
   }
 
   if(
-    playerX >
-    right - half
+    playerX>
+    right-half
   ){
-    playerX =
-      right - half;
+    playerX=
+    right-half;
   }
 
-  player.style.left =
-    playerX + "px";
+  player.style.left=
+  playerX+"px";
 }
 
 
-/* ==========================================
-   FREE SWIPE
-========================================== */
+/* ================= SWIPE ================= */
 
 game.addEventListener(
-  "touchstart",
-  function(e){
+"touchstart",
+function(e){
 
-    if(
-      e.target.closest("#menu") ||
-      e.target.closest("#pauseMenu") ||
-      e.target.closest("#pause")
-    ){
-      return;
-    }
+  if(
+    e.target.closest("#menu")||
+    e.target.closest("#pauseMenu")||
+    e.target.closest("#pause")
+  ){
+    return;
+  }
 
-    if(
-      !running ||
-      paused ||
-      crashed
-    ){
-      return;
-    }
+  if(
+    !running||
+    paused||
+    crashed
+  ){
+    return;
+  }
 
-    e.preventDefault();
+  e.preventDefault();
 
-    startAudio();
+  startAudio();
 
-    lastTouchX =
-      e.touches[0].clientX;
+  lastTouchX=
+  e.touches[0].clientX;
 
-    touchStartY =
-      e.touches[0].clientY;
+  touchStartY=
+  e.touches[0].clientY;
 
-  },
-  {passive:false}
+},
+{passive:false}
+);
+
+game.addEventListener(
+"touchmove",
+function(e){
+
+  if(
+    !running||
+    paused||
+    crashed
+  ){
+    return;
+  }
+
+  e.preventDefault();
+
+  const x=
+  e.touches[0].clientX;
+
+  const y=
+  e.touches[0].clientY;
+
+  const dx=
+  x-lastTouchX;
+
+  movePlayer(
+    playerX+dx
+  );
+
+  lastTouchX=x;
+
+  if(
+    touchStartY-y>60&&
+    nitro>10
+  ){
+
+    activateNitro();
+
+    touchStartY=y;
+  }
+
+},
+{passive:false}
 );
 
 
-game.addEventListener(
-  "touchmove",
-  function(e){
-
-    if(
-      !running ||
-      paused ||
-      crashed
-    ){
-      return;
-    }
-
-    e.preventDefault();
-
-    const x =
-      e.touches[0].clientX;
-
-    const y =
-      e.touches[0].clientY;
-
-    const dx =
-      x - lastTouchX;
-
-    movePlayer(
-      playerX + dx
-    );
-
-    lastTouchX = x;
-
-    /* SWIPE UP FOR NITRO */
-
-    if(
-      touchStartY - y > 60 &&
-      nitro > 10
-    ){
-
-      activateNitro();
-
-      touchStartY = y;
-    }
-
-  },
-  {passive:false}
-);
-
-
-/* ==========================================
-   ROAD LINES
-========================================== */
+/* ================= ROAD ================= */
 
 function createRoadLines(){
 
   roadLines.forEach(
-    x => x.remove()
+    x=>x.remove()
   );
 
   roadLines=[];
@@ -1480,14 +1451,13 @@ function createRoadLines(){
     i++
   ){
 
-    const line =
-      document.createElement("div");
+    const line=
+    document.createElement("div");
 
-    line.className =
-      "roadLine";
+    line.className="roadLine";
 
-    line.style.top =
-      (i*130-120)+"px";
+    line.style.top=
+    (i*130-120)+"px";
 
     road.appendChild(line);
 
@@ -1495,43 +1465,38 @@ function createRoadLines(){
   }
 }
 
-
 function updateRoad(delta){
 
   roadLines.forEach(
-    line => {
+  line=>{
 
-      let y =
-        parseFloat(
-          line.style.top
-        );
+    let y=
+    parseFloat(
+      line.style.top
+    );
 
-      y +=
-        gameSpeed *
-        delta *
-        (nitroActive ? 1.8 : 1);
+    y+=
+    gameSpeed*
+    delta*
+    (nitroActive?1.8:1);
 
-      if(
-        y >
-        window.innerHeight
-      ){
-        y=-100;
-      }
-
-      line.style.top =
-        y+"px";
+    if(
+      y>window.innerHeight
+    ){
+      y=-100;
     }
-  );
+
+    line.style.top=
+    y+"px";
+  });
 }
 
 
-/* ==========================================
-   TRAFFIC CAR CREATION
-========================================== */
+/* ================= TRAFFIC ================= */
 
 function createEnemy(){
 
-  const colors = [
+  const colors=[
     "carGreen",
     "carYellow",
     "carBlue",
@@ -1539,63 +1504,57 @@ function createEnemy(){
     "carPurple"
   ];
 
-  const enemy =
-    document.createElement("div");
+  const enemy=
+  document.createElement("div");
 
-  enemy.className =
-    "traffic";
+  enemy.className="traffic";
 
-  enemy.innerHTML =
+  enemy.innerHTML=
 
-    '<div class="trafficBody '+
-    colors[
-      Math.floor(
-        Math.random()*colors.length
-      )
-    ]+'"></div>' +
+  '<div class="trafficBody '+
+  colors[
+    Math.floor(
+      Math.random()*colors.length
+    )
+  ]+'"></div>'+
 
-    '<div class="trafficWheel tw1"></div>' +
-    '<div class="trafficWheel tw2"></div>' +
-    '<div class="trafficWheel tw3"></div>' +
-    '<div class="trafficWheel tw4"></div>' +
+  '<div class="trafficWheel tw1"></div>'+
+  '<div class="trafficWheel tw2"></div>'+
+  '<div class="trafficWheel tw3"></div>'+
+  '<div class="trafficWheel tw4"></div>'+
 
-    '<div class="trafficRoof"></div>' +
+  '<div class="trafficRoof"></div>'+
 
-    '<div class="windshieldFront"></div>' +
-    '<div class="windshieldRear"></div>' +
+  '<div class="windshieldFront"></div>'+
+  '<div class="windshieldRear"></div>'+
 
-    '<div class="headLight hl1"></div>' +
-    '<div class="headLight hl2"></div>' +
+  '<div class="headLight hl1"></div>'+
+  '<div class="headLight hl2"></div>'+
 
-    '<div class="tailLight tl1"></div>' +
-    '<div class="tailLight tl2"></div>';
+  '<div class="tailLight tl1"></div>'+
+  '<div class="tailLight tl2"></div>';
 
-  enemy.style.left =
-    (
-      10 +
-      Math.random() *
-      (road.clientWidth-70)
-    )+"px";
+  enemy.style.left=
+  (
+    10+
+    Math.random()*
+    (road.clientWidth-70)
+  )+"px";
 
-  enemy.style.top =
-    (
-      -150 -
-      Math.random()*250
-    )+"px";
+  enemy.style.top=
+  (
+    -150-
+    Math.random()*250
+  )+"px";
 
-  enemy.dataset.speed =
-    gameSpeed *
-    (.65 + Math.random()*.75);
+  enemy.dataset.speed=
+  gameSpeed*
+  (.65+Math.random()*.75);
 
   road.appendChild(enemy);
 
   enemies.push(enemy);
 }
-
-
-/* ==========================================
-   ENEMY UPDATE
-========================================== */
 
 function updateEnemies(delta){
 
@@ -1605,23 +1564,23 @@ function updateEnemies(delta){
     i--
   ){
 
-    const enemy =
-      enemies[i];
+    const enemy=
+    enemies[i];
 
-    let y =
-      parseFloat(
-        enemy.style.top
-      );
+    let y=
+    parseFloat(
+      enemy.style.top
+    );
 
-    y +=
-      parseFloat(
-        enemy.dataset.speed
-      ) *
-      delta *
-      (nitroActive ? 1.5 : 1);
+    y+=
+    parseFloat(
+      enemy.dataset.speed
+    )*
+    delta*
+    (nitroActive?1.5:1);
 
-    enemy.style.top =
-      y+"px";
+    enemy.style.top=
+    y+"px";
 
     if(
       isColliding(
@@ -1636,7 +1595,7 @@ function updateEnemies(delta){
     }
 
     if(
-      y >
+      y>
       window.innerHeight+150
     ){
 
@@ -1644,7 +1603,7 @@ function updateEnemies(delta){
 
       enemies.splice(i,1);
 
-      score += 10;
+      score+=10;
 
       updateScore();
     }
@@ -1652,36 +1611,32 @@ function updateEnemies(delta){
 }
 
 
-/* ==========================================
-   COINS
-========================================== */
+/* ================= COINS ================= */
 
 function createCoin(){
 
-  const coin =
-    document.createElement("div");
+  const coin=
+  document.createElement("div");
 
-  coin.className =
-    "coin";
+  coin.className="coin";
 
-  coin.style.left =
-    (
-      15 +
-      Math.random() *
-      (road.clientWidth-50)
-    )+"px";
+  coin.style.left=
+  (
+    15+
+    Math.random()*
+    (road.clientWidth-50)
+  )+"px";
 
-  coin.style.top =
-    (
-      -70 -
-      Math.random()*180
-    )+"px";
+  coin.style.top=
+  (
+    -70-
+    Math.random()*180
+  )+"px";
 
   road.appendChild(coin);
 
   coinObjects.push(coin);
 }
-
 
 function updateCoins(delta){
 
@@ -1691,21 +1646,21 @@ function updateCoins(delta){
     i--
   ){
 
-    const coin =
-      coinObjects[i];
+    const coin=
+    coinObjects[i];
 
-    let y =
-      parseFloat(
-        coin.style.top
-      );
+    let y=
+    parseFloat(
+      coin.style.top
+    );
 
-    y +=
-      gameSpeed *
-      delta *
-      (nitroActive ? 1.6 : 1);
+    y+=
+    gameSpeed*
+    delta*
+    (nitroActive?1.6:1);
 
-    coin.style.top =
-      y+"px";
+    coin.style.top=
+    y+"px";
 
     if(
       isColliding(
@@ -1714,8 +1669,8 @@ function updateCoins(delta){
       )
     ){
 
-      const rect =
-        coin.getBoundingClientRect();
+      const rect=
+      coin.getBoundingClientRect();
 
       createCoinEffect(
         rect.left,
@@ -1734,10 +1689,10 @@ function updateCoins(delta){
 
       totalCoins++;
 
-      score += 25;
+      score+=25;
 
-      coinsText.innerText =
-        totalCoins;
+      coinsText.innerText=
+      totalCoins;
 
       localStorage.setItem(
         "crazyRoadCoins",
@@ -1750,7 +1705,7 @@ function updateCoins(delta){
     }
 
     if(
-      y >
+      y>
       window.innerHeight+70
     ){
 
@@ -1762,50 +1717,43 @@ function updateCoins(delta){
 }
 
 
-/* ==========================================
-   RARE OBSTACLES
-========================================== */
+/* ================= OBSTACLES ================= */
 
 function createObstacle(){
 
-  const object =
-    document.createElement("div");
+  const object=
+  document.createElement("div");
 
-  if(
-    Math.random()<.5
-  ){
+  if(Math.random()<.5){
 
-    object.className =
-      "cone";
+    object.className="cone";
 
   }else{
 
-    object.className =
-      "obstacle";
+    object.className="obstacle";
   }
 
-  object.style.left =
-    (
-      15 +
-      Math.random() *
-      (road.clientWidth-70)
-    )+"px";
+  object.style.left=
+  (
+    15+
+    Math.random()*
+    (road.clientWidth-70)
+  )+"px";
 
-  object.style.top =
-    (
-      -100 -
-      Math.random()*200
-    )+"px";
+  object.style.top=
+  (
+    -100-
+    Math.random()*200
+  )+"px";
 
-  object.dataset.speed =
-    gameSpeed *
-    (.8 + Math.random()*.4);
+  object.dataset.speed=
+  gameSpeed*
+  (.8+Math.random()*.4);
 
   road.appendChild(object);
 
   obstacles.push(object);
 }
-
 
 function updateObstacles(delta){
 
@@ -1815,22 +1763,22 @@ function updateObstacles(delta){
     i--
   ){
 
-    const object =
-      obstacles[i];
+    const object=
+    obstacles[i];
 
-    let y =
-      parseFloat(
-        object.style.top
-      );
+    let y=
+    parseFloat(
+      object.style.top
+    );
 
-    y +=
-      parseFloat(
-        object.dataset.speed
-      ) *
-      delta;
+    y+=
+    parseFloat(
+      object.dataset.speed
+    )*
+    delta;
 
-    object.style.top =
-      y+"px";
+    object.style.top=
+    y+"px";
 
     if(
       isColliding(
@@ -1845,7 +1793,7 @@ function updateObstacles(delta){
     }
 
     if(
-      y >
+      y>
       window.innerHeight+100
     ){
 
@@ -1853,7 +1801,7 @@ function updateObstacles(delta){
 
       obstacles.splice(i,1);
 
-      score += 5;
+      score+=5;
 
       updateScore();
     }
@@ -1861,77 +1809,64 @@ function updateObstacles(delta){
 }
 
 
-/* ==========================================
-   SCENERY
-========================================== */
+/* ================= SCENERY ================= */
 
 function createScenery(){
 
-  const types=[
-    "tree",
-    "palm"
-  ];
-
   const type=
-    types[
-      Math.floor(
-        Math.random()*types.length
-      )
-    ];
+  Math.random()<.5?
+  "tree":"palm";
 
   const object=
-    document.createElement("div");
+  document.createElement("div");
 
   if(type==="tree"){
 
     object.className="tree";
 
     object.innerHTML=
-      '<div class="treeLeaves"></div>'+
-      '<div class="treeTrunk"></div>';
+    '<div class="treeLeaves"></div>'+
+    '<div class="treeTrunk"></div>';
 
   }else{
 
     object.className="palm";
 
     object.innerHTML=
-      '<div class="palmTrunk"></div>'+
-      '<div class="palmCenter"></div>'+
-      '<div class="palmLeaf pl1"></div>'+
-      '<div class="palmLeaf pl2"></div>'+
-      '<div class="palmLeaf pl3"></div>'+
-      '<div class="palmLeaf pl4"></div>'+
-      '<div class="palmLeaf pl5"></div>'+
-      '<div class="palmLeaf pl6"></div>'+
-      '<div class="coconut"></div>';
+    '<div class="palmTrunk"></div>'+
+    '<div class="palmCenter"></div>'+
+    '<div class="palmLeaf pl1"></div>'+
+    '<div class="palmLeaf pl2"></div>'+
+    '<div class="palmLeaf pl3"></div>'+
+    '<div class="palmLeaf pl4"></div>'+
+    '<div class="palmLeaf pl5"></div>'+
+    '<div class="palmLeaf pl6"></div>'+
+    '<div class="coconut"></div>';
   }
 
-  if(
-    Math.random()<.5
-  ){
+  if(Math.random()<.5){
 
     object.style.left=
-      (Math.random()*4)+"%";
+    (Math.random()*4)+"%";
 
   }else{
 
     object.style.right=
-      (Math.random()*4)+"%";
+    (Math.random()*4)+"%";
   }
 
   object.style.top="-190px";
 
   object.dataset.speed=
-    gameSpeed*
-    (.7+Math.random()*.5);
+  gameSpeed*
+  (.7+Math.random()*.5);
 
   document
-    .getElementById("scenery")
-    .appendChild(object);
+  .getElementById("scenery")
+  .appendChild(object);
 
   sceneryObjects.push(object);
 }
-
 
 function updateScenery(delta){
 
@@ -1942,21 +1877,21 @@ function updateScenery(delta){
   ){
 
     const object=
-      sceneryObjects[i];
+    sceneryObjects[i];
 
     let y=
-      parseFloat(
-        object.style.top
-      );
+    parseFloat(
+      object.style.top
+    );
 
     y+=
-      parseFloat(
-        object.dataset.speed
-      )*
-      delta;
+    parseFloat(
+      object.dataset.speed
+    )*
+    delta;
 
     object.style.top=
-      y+"px";
+    y+"px";
 
     if(
       y>
@@ -1971,42 +1906,40 @@ function updateScenery(delta){
 }
 
 
-/* ==========================================
-   COLLISION
-========================================== */
+/* ================= COLLISION ================= */
 
 function isColliding(a,b){
 
   const A=
-    a.getBoundingClientRect();
+  a.getBoundingClientRect();
 
   const B=
-    b.getBoundingClientRect();
-
-  /*
-    Slightly smaller collision box
-    makes the game fairer.
-  */
+  b.getBoundingClientRect();
 
   const padding=9;
 
   return !(
-    A.right-padding < B.left+padding ||
-    A.left+padding > B.right-padding ||
-    A.bottom-padding < B.top+padding ||
-    A.top+padding > B.bottom-padding
+    A.right-padding<
+    B.left+padding||
+
+    A.left+padding>
+    B.right-padding||
+
+    A.bottom-padding<
+    B.top+padding||
+
+    A.top+padding>
+    B.bottom-padding
   );
 }
 
 
-/* ==========================================
-   HIT
-========================================== */
+/* ================= HIT ================= */
 
 function hitPlayer(object){
 
   if(
-    object &&
+    object&&
     object.parentNode
   ){
     object.remove();
@@ -2015,7 +1948,7 @@ function hitPlayer(object){
   lives--;
 
   livesText.innerText=
-    lives;
+  lives;
 
   createCrashEffect();
 
@@ -2035,55 +1968,49 @@ function hitPlayer(object){
   player.style.opacity=".35";
 
   setTimeout(
-    function(){
+  function(){
 
-      player.style.opacity="1";
+    player.style.opacity="1";
 
-    },
-    1400
+  },
+  1400
   );
 }
 
 
-/* ==========================================
-   SCORE / DIFFICULTY
-========================================== */
+/* ================= SCORE ================= */
 
 function updateScore(){
 
   scoreText.innerText=
-    score;
+  score;
 
   const level=
-    Math.floor(
-      score/500
-    );
+  Math.floor(score/500);
 
   gameSpeed=
-    5+
-    level*1.25;
+  5+
+  level*1.25;
 
   displaySpeed=
-    Math.round(
-      100+
-      level*22
-    );
+  Math.round(
+    100+
+    level*22
+  );
 
   speedText.innerText=
-    displaySpeed;
+  displaySpeed;
 }
 
 
-/* ==========================================
-   NITRO
-========================================== */
+/* ================= NITRO ================= */
 
 function activateNitro(){
 
   if(
-    nitroActive ||
-    nitro<10 ||
-    !running ||
+    nitroActive||
+    nitro<10||
+    !running||
     paused
   ){
     return;
@@ -2092,10 +2019,10 @@ function activateNitro(){
   nitroActive=true;
 
   const flame=
-    document.createElement("div");
+  document.createElement("div");
 
   flame.className=
-    "nitroFlame";
+  "nitroFlame";
 
   player.appendChild(flame);
 
@@ -2106,85 +2033,80 @@ function activateNitro(){
   );
 
   const timer=
-    setInterval(
-      function(){
+  setInterval(
+  function(){
 
-        nitro-=1.5;
+    nitro-=1.5;
 
-        nitroBar.style.width=
-          Math.max(
-            0,
-            nitro
-          )+"%";
+    nitroBar.style.width=
+    Math.max(
+      0,nitro
+    )+"%";
 
-        if(nitro<=0){
-
-          nitroActive=false;
-
-          clearInterval(timer);
-
-          flame.remove();
-        }
-
-      },
-      50
-    );
-
-  setTimeout(
-    function(){
+    if(nitro<=0){
 
       nitroActive=false;
 
       clearInterval(timer);
 
-      if(
-        flame.parentNode
-      ){
-        flame.remove();
-      }
+      flame.remove();
+    }
 
-    },
-    3500
+  },
+  50
+  );
+
+  setTimeout(
+  function(){
+
+    nitroActive=false;
+
+    clearInterval(timer);
+
+    if(flame.parentNode){
+      flame.remove();
+    }
+
+  },
+  3500
   );
 }
-
 
 function rechargeNitro(delta){
 
   if(
-    !nitroActive &&
+    !nitroActive&&
     nitro<100
   ){
 
     nitro+=
-      .025*delta;
+    .025*delta;
 
     if(nitro>100)
       nitro=100;
 
     nitroBar.style.width=
-      nitro+"%";
+    nitro+"%";
   }
 }
 
 
-/* ==========================================
-   EFFECTS
-========================================== */
+/* ================= EFFECTS ================= */
 
 function createCrashEffect(){
 
   const effect=
-    document.createElement("div");
+  document.createElement("div");
 
-  effect.className=
-    "crash";
+  effect.className="crash";
 
   effect.style.left=
-    (playerX-50)+"px";
+  (playerX-50)+"px";
 
   effect.style.top=
-    (window.innerHeight-180)+"px";
+  (
+    window.innerHeight-210
+  )+"px";
 
   game.appendChild(effect);
 
@@ -2194,23 +2116,18 @@ function createCrashEffect(){
   );
 }
 
-
 function createCoinEffect(x,y){
 
   const effect=
-    document.createElement("div");
+  document.createElement("div");
 
-  effect.className=
-    "coinPop";
+  effect.className="coinPop";
 
-  effect.innerText=
-    "+25";
+  effect.innerText="+25";
 
-  effect.style.left=
-    x+"px";
+  effect.style.left=x+"px";
 
-  effect.style.top=
-    y+"px";
+  effect.style.top=y+"px";
 
   game.appendChild(effect);
 
@@ -2221,82 +2138,75 @@ function createCoinEffect(x,y){
 }
 
 
-/* ==========================================
-   COUNTDOWN
-========================================== */
+/* ================= COUNTDOWN ================= */
 
 function startCountdown(){
 
   return new Promise(
-    resolve=>{
+  resolve=>{
 
-      let number=3;
+    let number=3;
 
-      countdown.style.display=
-        "flex";
+    countdown.style.display=
+    "flex";
 
-      countdown.innerText=
+    countdown.innerText=
+    number;
+
+    const timer=
+    setInterval(
+    function(){
+
+      number--;
+
+      if(number>0){
+
+        countdown.innerText=
         number;
 
-      const timer=
-        setInterval(
-          function(){
-
-            number--;
-
-            if(number>0){
-
-              countdown.innerText=
-                number;
-
-              beep(
-                400,
-                .12,
-                "square"
-              );
-
-            }else{
-
-              countdown.innerText=
-                "GO!";
-
-              beep(
-                800,
-                .2,
-                "square"
-              );
-
-              setTimeout(
-                function(){
-
-                  countdown.style.display=
-                    "none";
-
-                  clearInterval(timer);
-
-                  resolve();
-
-                },
-                600
-              );
-            }
-
-          },
-          700
+        beep(
+          400,
+          .12,
+          "square"
         );
-    }
-  );
+
+      }else{
+
+        countdown.innerText="GO!";
+
+        beep(
+          800,
+          .2,
+          "square"
+        );
+
+        setTimeout(
+        function(){
+
+          countdown.style.display=
+          "none";
+
+          clearInterval(timer);
+
+          resolve();
+
+        },
+        600
+        );
+      }
+
+    },
+    700
+    );
+  });
 }
 
 
-/* ==========================================
-   GAME LOOP
-========================================== */
+/* ================= GAME LOOP ================= */
 
 function gameLoop(time){
 
-  if(!running)
-    return;
+  if(!running)return;
 
   if(paused){
 
@@ -2311,7 +2221,7 @@ function gameLoop(time){
     lastTime=time;
 
   let delta=
-    (time-lastTime)/16.67;
+  (time-lastTime)/16.67;
 
   if(delta>2)
     delta=2;
@@ -2330,14 +2240,11 @@ function gameLoop(time){
 
   rechargeNitro(delta);
 
-
-  /* Traffic */
-
   const enemyDelay=
-    Math.max(
-      800,
-      1600-score*.22
-    );
+  Math.max(
+    800,
+    1600-score*.22
+  );
 
   if(
     time-lastEnemy>
@@ -2350,9 +2257,6 @@ function gameLoop(time){
     lastEnemy=time;
   }
 
-
-  /* Coins */
-
   if(
     time-lastCoin>
     750+
@@ -2364,11 +2268,10 @@ function gameLoop(time){
     lastCoin=time;
   }
 
-
-  /* VERY FEW BARRIERS */
+  /* Very few obstacles */
 
   if(
-    score>250 &&
+    score>250&&
     time-lastObstacle>
     4000+
     Math.random()*3500
@@ -2378,9 +2281,6 @@ function gameLoop(time){
 
     lastObstacle=time;
   }
-
-
-  /* Scenery */
 
   if(
     time-lastScenery>
@@ -2393,23 +2293,20 @@ function gameLoop(time){
     lastScenery=time;
   }
 
-
   requestAnimationFrame(
     gameLoop
   );
 }
 
 
-/* ==========================================
-   START
-========================================== */
+/* ================= START ================= */
 
 async function startGame(){
 
   startAudio();
 
   if(
-    audioContext &&
+    audioContext&&
     audioContext.state==="suspended"
   ){
     audioContext.resume();
@@ -2463,8 +2360,7 @@ async function startGame(){
 
   await startCountdown();
 
-  if(!running)
-    return;
+  if(!running)return;
 
   requestAnimationFrame(
     gameLoop
@@ -2472,14 +2368,11 @@ async function startGame(){
 }
 
 
-/* ==========================================
-   GAME OVER
-========================================== */
+/* ================= GAME OVER ================= */
 
 function endGame(){
 
-  if(crashed)
-    return;
+  if(crashed)return;
 
   running=false;
 
@@ -2507,23 +2400,23 @@ function endGame(){
 
   menuBest.innerText=best;
 
-  menuCoins.innerText=totalCoins;
+  menuCoins.innerText=
+  totalCoins;
 
   menuTitle.innerText=
-    "💥 GAME OVER";
+  "💥 GAME OVER";
 
   menuSubtitle.innerText=
-    "Score: "+score+
-    " • Coins: "+totalCoins;
+  "Score: "+score+
+  " • Coins: "+totalCoins;
 
   playButton.innerText=
-    "🔄 PLAY AGAIN";
+  "🔄 PLAY AGAIN";
 
-  menu.style.display=
-    "flex";
+  menu.style.display="flex";
 
   pauseButton.style.display=
-    "none";
+  "none";
 
   enemies.forEach(
     x=>x.remove()
@@ -2551,143 +2444,124 @@ function endGame(){
 }
 
 
-/* ==========================================
-   PAUSE
-========================================== */
+/* ================= PAUSE ================= */
 
 pauseButton.addEventListener(
-  "click",
-  function(e){
+"click",
+function(e){
 
-    e.stopPropagation();
+  e.stopPropagation();
 
-    if(
-      !running ||
-      crashed
-    )
-      return;
+  if(
+    !running||
+    crashed
+  )return;
 
-    paused=true;
+  paused=true;
 
-    pauseMenu.style.display=
-      "flex";
-  }
-);
-
+  pauseMenu.style.display=
+  "flex";
+});
 
 resumeButton.addEventListener(
-  "click",
-  function(e){
+"click",
+function(e){
 
-    e.stopPropagation();
+  e.stopPropagation();
 
-    paused=false;
+  paused=false;
 
-    pauseMenu.style.display=
-      "none";
+  pauseMenu.style.display=
+  "none";
 
-    lastTime=
-      performance.now();
-  }
-);
-
+  lastTime=
+  performance.now();
+});
 
 quitButton.addEventListener(
-  "click",
-  function(e){
+"click",
+function(e){
 
-    e.stopPropagation();
+  e.stopPropagation();
 
-    running=false;
+  running=false;
 
-    paused=false;
+  paused=false;
 
-    pauseMenu.style.display=
-      "none";
+  pauseMenu.style.display=
+  "none";
 
-    pauseButton.style.display=
-      "none";
+  pauseButton.style.display=
+  "none";
 
-    menuTitle.innerText=
-      "CRAZY ROAD";
+  menuTitle.innerText=
+  "CRAZY ROAD";
 
-    menuSubtitle.innerText=
-      "V3.0 — TOP-DOWN F1 RACER";
+  menuSubtitle.innerText=
+  "V3.1 — TOP-DOWN F1 RACER";
 
-    playButton.innerText=
-      "▶ PLAY";
+  playButton.innerText=
+  "▶ PLAY";
 
-    menuBest.innerText=
-      best;
+  menuBest.innerText=best;
 
-    menuCoins.innerText=
-      totalCoins;
+  menuCoins.innerText=
+  totalCoins;
 
-    menu.style.display=
-      "flex";
-  }
-);
+  menu.style.display=
+  "flex";
+});
 
 
-/* ==========================================
-   PLAY
-========================================== */
+/* ================= PLAY ================= */
 
 playButton.addEventListener(
-  "click",
-  function(e){
+"click",
+function(e){
 
-    e.stopPropagation();
+  e.stopPropagation();
 
-    startGame();
-  }
-);
+  startGame();
+});
 
 
-/* ==========================================
-   SOUND
-========================================== */
+/* ================= SOUND ================= */
 
 soundButton.addEventListener(
-  "click",
-  function(e){
+"click",
+function(e){
 
-    e.stopPropagation();
+  e.stopPropagation();
 
-    soundOn=!soundOn;
+  soundOn=!soundOn;
 
-    if(soundOn){
+  if(soundOn){
 
-      soundButton.innerText=
-        "🔊 SOUND ON";
+    soundButton.innerText=
+    "🔊 SOUND ON";
 
-      startAudio();
+    startAudio();
 
-    }else{
+  }else{
 
-      soundButton.innerText=
-        "🔇 SOUND OFF";
-    }
+    soundButton.innerText=
+    "🔇 SOUND OFF";
   }
-);
+});
 
 
-/* ==========================================
-   RESIZE
-========================================== */
+/* ================= RESIZE ================= */
 
 window.addEventListener(
-  "resize",
-  function(){
+"resize",
+function(){
 
-    movePlayer(playerX);
-  }
-);
+  movePlayer(playerX);
+
+});
 
 
-/* ==========================================
-   INITIALIZE
-========================================== */
+/* ================= INITIALIZE ================= */
 
 setPlayerStart();
 
